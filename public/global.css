@@ -1,0 +1,29 @@
+html, body {
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.scroll {
+    overflow: scroll;
+}
+
+.top-pannel {
+    height: 83%;
+}
+
+.bottom-pannel {
+    height: 17%;
+}
+
+.align-right {
+    margin-left: auto;
+}
