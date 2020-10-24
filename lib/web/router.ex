@@ -30,12 +30,33 @@ defmodule Codebot.Web.Router do
     post "/message" do
         {:ok, encoded_body, _} = Plug.Conn.read_body(conn)
         case JSON.decode(encoded_body) do
-            {:ok, %{"message" => message}} -> send_resp(conn, 200, message)
-            _ -> send_resp(conn, 500, "Server error")
+            {:ok, %{"message" => message}} ->
+                try do
+                    message
+                    |> Codebot.Bot.query
+                    |> response(conn, 200)
+                rescue
+                    err ->
+                        IO.inspect(err)
+                        response(conn, 500)
+                end
+            _ -> response(conn, 500)
         end
     end
 
     match _ do
         send_resp(conn, 404, "Route not found")
+    end
+
+    defp response(message, conn, 200) do
+        clean_message = Map.drop(message, [:__struct__])
+        case JSON.encode(clean_message) do
+            {:ok, body} -> send_resp(conn, 200, body)
+            _ -> response(conn, 500)
+        end
+    end
+
+    defp response(conn, 500) do
+        send_resp(conn, 500, "Server error")
     end
 end

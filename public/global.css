@@ -22,8 +22,39 @@ html, body {
 
 .bottom-pannel {
     height: 17%;
+    background-color: #943295;
 }
 
 .align-right {
     margin-left: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.card img {
+    max-height: 200px;
+}
+
+.background {
+    background-image: linear-gradient(to right, #00aabb, #0ba4de);
+}
+
+.button-background {
+    background-color: #00aabb;
+}
+
+.button-shape {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-shape {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
