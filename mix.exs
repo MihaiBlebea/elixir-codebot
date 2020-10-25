@@ -6,6 +6,7 @@ defmodule Codebot.MixProject do
         app: :codebot,
         version: "0.1.0",
         elixir: "~> 1.10",
+        elixirc_paths: elixirc_paths(Mix.env),
         start_permanent: Mix.env() == :prod,
         deps: deps()
         ]
@@ -18,6 +19,8 @@ defmodule Codebot.MixProject do
             mod: {Codebot, []}
         ]
     end
+
+    defp elixirc_paths(_), do: ["lib", "web"]
 
     # Run "mix help deps" to learn about dependencies.
     defp deps do

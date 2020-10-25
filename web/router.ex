@@ -2,11 +2,11 @@ defmodule Codebot.Web.Router do
     use Plug.Router
     require Logger
 
-    plug CORSPlug, origin: ["http://localhost:8080"]
+    # plug CORSPlug, origin: ["http://localhost:8080"]
     plug Plug.Logger
     plug Plug.Static,
-        at: "/public",
-        from: "public"
+        at: "/static",
+        from: "./front/dist/static"
     plug :match
     plug :dispatch
 
@@ -17,7 +17,7 @@ defmodule Codebot.Web.Router do
     get "/" do
         conn
         |> put_resp_header("content-type", "text/html; charset=utf-8")
-        |> send_file(200, "./public/index.html")
+        |> send_file(200, "./front/dist/index.html")
     end
 
     post "/message" do

@@ -12,16 +12,18 @@ defmodule Codebot.Repository do
 
     @base_url "https://hexdocs.pm/elixir"
 
+    @local_path "./repo"
+
     def refresh_cache() do
         @base_url <> "/api-reference.html#content"
         |> get_page_content
         |> extract_modules
-        |> store_to_file("./modules.json")
+        |> store_to_file(@local_path <> "/modules.json")
 
-        read_from_file("./modules.json")
+        read_from_file(@local_path <> "/modules.json")
         |> get_page_content
         |> Enum.map(fn (content)-> extract_functions content end)
-        |> store_to_file("functions.json")
+        |> store_to_file(@local_path <> "/functions.json")
     end
 
     defp get_page_content(url) when is_binary(url) do
