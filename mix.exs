@@ -23,6 +23,7 @@ defmodule Codebot.MixProject do
     defp deps do
         [
             {:plug_cowboy, "~> 2.0"},
+            {:cors_plug, "~> 1.2"},
             {:httpoison, "~> 1.6"},
             {:floki, "~> 0.29.0"},
             {:json, "~> 1.2"}

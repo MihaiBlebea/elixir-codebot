@@ -1,40 +1,28 @@
 defmodule Codebot.Web.Response do
 
-    defstruct message: nil,
-        type: nil,
-        image: nil,
-        title: nil,
-        description: nil,
-        link: nil,
-        list: nil
+    defstruct token: nil, messages: nil
 
-    @spec newMessage(binary, :message) :: %Codebot.Web.Response{}
-    def newMessage(message, :message) do
+    @spec new(binary, list) :: %Codebot.Web.Response{}
+    def new(token, messages) do
         %Codebot.Web.Response{
-            message: message,
-            type: :message
+            token: token,
+            messages: messages
         }
     end
 
-    @spec newMessage(binary, :card, binary, binary, binary, binary) :: %Codebot.Web.Response{}
-    def newMessage(message, :card, image, title, description, link) do
-        %Codebot.Web.Response{
-            message: message,
-            type: :card,
-            image: image,
-            title: title,
-            description: description,
-            link: link
-        }
-    end
-
-    @spec newMessage(binary, :list, binary, list) :: %Codebot.Web.Response{}
-    def newMessage(message, :list, link, list) do
-        %Codebot.Web.Response{
-            message: message,
-            type: :list,
-            list: list,
-            link: link
-        }
+    @spec encode(%Codebot.Web.Response{}) :: bitstring
+    def encode(response) do
+        resp = Map.drop(response, [:__struct__])
+        r = Map.put(
+            resp,
+            "messages",
+            Enum.map(
+                resp.messages,
+                fn (message)-> Codebot.Web.Message.encode(message) end)
+        )
+        case JSON.encode(r) do
+            {:ok, body} -> body
+            _ -> raise "Could not encode the response"
+        end
     end
 end
