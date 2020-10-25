@@ -89,7 +89,7 @@ export default {
             this.loading = !this.loading
         },
         playNotification: function() {
-            let audio = new Audio('https://raw.githubusercontent.com/danielstern/ngAudio/master/app/audio/button-3.mp3');
+            let audio = new Audio('https://raw.githubusercontent.com/MihaiBlebea/elixir-codebot/master/front/src/assets/audio.mp3');
             audio.play();
         },
         storeMessage: function({ text, created, fromBot }) {
