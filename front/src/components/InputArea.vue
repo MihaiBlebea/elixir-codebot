@@ -24,31 +24,54 @@ export default {
             if (this.userInput === "") {
                 return
             }
-            this.history.push(this.userInput)
-            this.index = this.history.length - 1
             this.$emit('sent', this.userInput)
+            this.addToHistory(this.userInput)
             this.userInput = ''
         },
         validateEnterPress: function(ev) {
-            if (ev.keyCode === 13) {
-                this.userInput = this.userInput.trim()
-                this.sendMessage()
+            switch(ev.keyCode) {
+                case 13:
+                    this.handleKeyEnter()
+                    break
+                case 38:
+                    this.handleKeyUp()
+                    break
+                case 40:
+                    this.handleKeyDown()
+                    break
+                default:
+                    break 
+            }
+        },
+        handleKeyUp: function() {
+            if (this.history.length === 0) {
+                return
             }
 
-            // Key up
-            if (ev.keyCode === 38 && this.history.length > 0) {
-                this.index--
-                if (this.index < 0) {
-                    this.index = this.history.length - 1
-                }
-                this.userInput = this.history[this.index]
+            this.index--
+            if (this.index < 0) {
+                this.index = this.history.length - 1
+            }
+            this.userInput = this.history[this.index]
+        },
+        handleKeyDown: function() {
+            if (this.history.length === 0) {
+                return
             }
 
-            // Key down
-            if (ev.keyCode === 40) {
-                // this.userInput = this.userInput.trim()
-                this.sendMessage()
+            this.index++
+            if (this.index > this.history.length - 1) {
+                this.index = 0
             }
+            this.userInput = this.history[this.index]
+        },
+        handleKeyEnter: function() {
+            this.userInput = this.userInput.trim()
+            this.sendMessage()
+        },
+        addToHistory: function(message) {
+            this.history.push(message)
+            this.index = this.history.length - 1
         }
     }
 }

@@ -1,0 +1,572 @@
+[
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Access.html\">Access</a></div><div class=\"summary-synopsis\"><p>Key-based access to data structures.</p></div></div>",
+        "name": "Access",
+        "url": "Access.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Agent.html\">Agent</a></div><div class=\"summary-synopsis\"><p>Agents are a simple abstraction around state.</p></div></div>",
+        "name": "Agent",
+        "url": "Agent.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Application.html\">Application</a></div><div class=\"summary-synopsis\"><p>A module for working with applications and defining application callbacks.</p></div></div>",
+        "name": "Application",
+        "url": "Application.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"ArgumentError.html\">ArgumentError</a></div></div>",
+        "name": "ArgumentError",
+        "url": "ArgumentError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"ArithmeticError.html\">ArithmeticError</a></div></div>",
+        "name": "ArithmeticError",
+        "url": "ArithmeticError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Atom.html\">Atom</a></div><div class=\"summary-synopsis\"><p>Atoms are constants whose values are their own name.</p></div></div>",
+        "name": "Atom",
+        "url": "Atom.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"BadArityError.html\">BadArityError</a></div></div>",
+        "name": "BadArityError",
+        "url": "BadArityError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"BadBooleanError.html\">BadBooleanError</a></div></div>",
+        "name": "BadBooleanError",
+        "url": "BadBooleanError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"BadFunctionError.html\">BadFunctionError</a></div></div>",
+        "name": "BadFunctionError",
+        "url": "BadFunctionError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"BadMapError.html\">BadMapError</a></div></div>",
+        "name": "BadMapError",
+        "url": "BadMapError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"BadStructError.html\">BadStructError</a></div></div>",
+        "name": "BadStructError",
+        "url": "BadStructError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Base.html\">Base</a></div><div class=\"summary-synopsis\"><p>This module provides data encoding and decoding functions\naccording to <a href=\"https://tools.ietf.org/html/rfc4648\">RFC 4648</a>.</p></div></div>",
+        "name": "Base",
+        "url": "Base.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Behaviour.html\">Behaviour</a><span class=\"deprecated\" title=\"Use @callback and @macrocallback attributes instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Mechanism for handling behaviours.</p></div></div>",
+        "name": "Behaviour",
+        "url": "Behaviour.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Bitwise.html\">Bitwise</a></div><div class=\"summary-synopsis\"><p>A set of functions that perform calculations on bits.</p></div></div>",
+        "name": "Bitwise",
+        "url": "Bitwise.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Calendar.html\">Calendar</a></div><div class=\"summary-synopsis\"><p>This module defines the responsibilities for working with\ncalendars, dates, times and datetimes in Elixir.</p></div></div>",
+        "name": "Calendar",
+        "url": "Calendar.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Calendar.ISO.html\">Calendar.ISO</a></div><div class=\"summary-synopsis\"><p>A calendar implementation that follows to ISO 8601.</p></div></div>",
+        "name": "Calendar",
+        "url": "Calendar.ISO.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Calendar.TimeZoneDatabase.html\">Calendar.TimeZoneDatabase</a></div><div class=\"summary-synopsis\"><p>This module defines a behaviour for providing time zone data.</p></div></div>",
+        "name": "Calendar",
+        "url": "Calendar.TimeZoneDatabase.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Calendar.UTCOnlyTimeZoneDatabase.html\">Calendar.UTCOnlyTimeZoneDatabase</a></div><div class=\"summary-synopsis\"><p>Built-in time zone database that works only in Etc/UTC.</p></div></div>",
+        "name": "Calendar",
+        "url": "Calendar.UTCOnlyTimeZoneDatabase.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"CaseClauseError.html\">CaseClauseError</a></div></div>",
+        "name": "CaseClauseError",
+        "url": "CaseClauseError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Code.html\">Code</a></div><div class=\"summary-synopsis\"><p>Utilities for managing code compilation, code evaluation, and code loading.</p></div></div>",
+        "name": "Code",
+        "url": "Code.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Code.LoadError.html\">Code.LoadError</a></div></div>",
+        "name": "Code",
+        "url": "Code.LoadError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Collectable.html\">Collectable</a></div><div class=\"summary-synopsis\"><p>A protocol to traverse data structures.</p></div></div>",
+        "name": "Collectable",
+        "url": "Collectable.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"CompileError.html\">CompileError</a></div></div>",
+        "name": "CompileError",
+        "url": "CompileError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"CondClauseError.html\">CondClauseError</a></div></div>",
+        "name": "CondClauseError",
+        "url": "CondClauseError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Config.html\">Config</a></div><div class=\"summary-synopsis\"><p>A simple keyword-based configuration API.</p></div></div>",
+        "name": "Config",
+        "url": "Config.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Config.Provider.html\">Config.Provider</a></div><div class=\"summary-synopsis\"><p>Specifies a provider API that loads configuration during boot.</p></div></div>",
+        "name": "Config",
+        "url": "Config.Provider.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Config.Reader.html\">Config.Reader</a></div><div class=\"summary-synopsis\"><p>API for reading config files defined with <a href=\"https://hexdocs.pm/elixir/Config.html\"><code class=\"inline\">Config</code></a>.</p></div></div>",
+        "name": "Config",
+        "url": "Config.Reader.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Date.html\">Date</a></div><div class=\"summary-synopsis\"><p>A Date struct and functions.</p></div></div>",
+        "name": "Date",
+        "url": "Date.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Date.Range.html\">Date.Range</a></div><div class=\"summary-synopsis\"><p>Returns an inclusive range between dates.</p></div></div>",
+        "name": "Date",
+        "url": "Date.Range.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"DateTime.html\">DateTime</a></div><div class=\"summary-synopsis\"><p>A datetime implementation with a time zone.</p></div></div>",
+        "name": "DateTime",
+        "url": "DateTime.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Dict.html\">Dict</a><span class=\"deprecated\" title=\"Use Map or Keyword modules instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Generic API for dictionaries.</p></div></div>",
+        "name": "Dict",
+        "url": "Dict.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"DynamicSupervisor.html\">DynamicSupervisor</a></div><div class=\"summary-synopsis\"><p>A supervisor that starts children dynamically.</p></div></div>",
+        "name": "DynamicSupervisor",
+        "url": "DynamicSupervisor.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Enum.html\">Enum</a></div><div class=\"summary-synopsis\"><p>Provides a set of algorithms to work with enumerables.</p></div></div>",
+        "name": "Enum",
+        "url": "Enum.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Enum.EmptyError.html\">Enum.EmptyError</a></div></div>",
+        "name": "Enum",
+        "url": "Enum.EmptyError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Enum.OutOfBoundsError.html\">Enum.OutOfBoundsError</a></div></div>",
+        "name": "Enum",
+        "url": "Enum.OutOfBoundsError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Enumerable.html\">Enumerable</a></div><div class=\"summary-synopsis\"><p>Enumerable protocol used by <a href=\"https://hexdocs.pm/elixir/Enum.html\"><code class=\"inline\">Enum</code></a> and <a href=\"https://hexdocs.pm/elixir/Stream.html\"><code class=\"inline\">Stream</code></a> modules.</p></div></div>",
+        "name": "Enumerable",
+        "url": "Enumerable.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"ErlangError.html\">ErlangError</a></div></div>",
+        "name": "ErlangError",
+        "url": "ErlangError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Exception.html\">Exception</a></div><div class=\"summary-synopsis\"><p>Functions to format throw/catch/exit and exceptions.</p></div></div>",
+        "name": "Exception",
+        "url": "Exception.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.html\">File</a></div><div class=\"summary-synopsis\"><p>This module contains functions to manipulate files.</p></div></div>",
+        "name": "File",
+        "url": "File.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.CopyError.html\">File.CopyError</a></div></div>",
+        "name": "File",
+        "url": "File.CopyError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.Error.html\">File.Error</a></div></div>",
+        "name": "File",
+        "url": "File.Error.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.LinkError.html\">File.LinkError</a></div></div>",
+        "name": "File",
+        "url": "File.LinkError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.RenameError.html\">File.RenameError</a></div></div>",
+        "name": "File",
+        "url": "File.RenameError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.Stat.html\">File.Stat</a></div><div class=\"summary-synopsis\"><p>A struct that holds file information.</p></div></div>",
+        "name": "File",
+        "url": "File.Stat.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"File.Stream.html\">File.Stream</a></div><div class=\"summary-synopsis\"><p>Defines a <a href=\"#content\"><code class=\"inline\">File.Stream</code></a> struct returned by <a href=\"https://hexdocs.pm/elixir/File.html#stream!/3\"><code class=\"inline\">File.stream!/3</code></a>.</p></div></div>",
+        "name": "File",
+        "url": "File.Stream.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Float.html\">Float</a></div><div class=\"summary-synopsis\"><p>Functions for working with floating-point numbers.</p></div></div>",
+        "name": "Float",
+        "url": "Float.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Function.html\">Function</a></div><div class=\"summary-synopsis\"><p>A set of functions for working with functions.</p></div></div>",
+        "name": "Function",
+        "url": "Function.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"FunctionClauseError.html\">FunctionClauseError</a></div></div>",
+        "name": "FunctionClauseError",
+        "url": "FunctionClauseError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"GenEvent.html\">GenEvent</a><span class=\"deprecated\" title=\"Use Erlang/OTP&#39;s :gen_event module instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>A event manager with event handlers behaviour.</p></div></div>",
+        "name": "GenEvent",
+        "url": "GenEvent.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"GenServer.html\">GenServer</a></div><div class=\"summary-synopsis\"><p>A behaviour module for implementing the server of a client-server relation.</p></div></div>",
+        "name": "GenServer",
+        "url": "GenServer.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"HashDict.html\">HashDict</a><span class=\"deprecated\" title=\"Use Map instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Tuple-based HashDict implementation.</p></div></div>",
+        "name": "HashDict",
+        "url": "HashDict.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"HashSet.html\">HashSet</a><span class=\"deprecated\" title=\"Use MapSet instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Tuple-based HashSet implementation.</p></div></div>",
+        "name": "HashSet",
+        "url": "HashSet.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"IO.html\">IO</a></div><div class=\"summary-synopsis\"><p>Functions handling input/output (IO).</p></div></div>",
+        "name": "IO",
+        "url": "IO.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"IO.ANSI.html\">IO.ANSI</a></div><div class=\"summary-synopsis\"><p>Functionality to render ANSI escape sequences.</p></div></div>",
+        "name": "IO",
+        "url": "IO.ANSI.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"IO.Stream.html\">IO.Stream</a></div><div class=\"summary-synopsis\"><p>Defines an <a href=\"#content\"><code class=\"inline\">IO.Stream</code></a> struct returned by <a href=\"https://hexdocs.pm/elixir/IO.html#stream/2\"><code class=\"inline\">IO.stream/2</code></a> and <a href=\"https://hexdocs.pm/elixir/IO.html#binstream/2\"><code class=\"inline\">IO.binstream/2</code></a>.</p></div></div>",
+        "name": "IO",
+        "url": "IO.Stream.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"IO.StreamError.html\">IO.StreamError</a></div></div>",
+        "name": "IO",
+        "url": "IO.StreamError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Inspect.html\">Inspect</a></div><div class=\"summary-synopsis\"><p>The <a href=\"#content\"><code class=\"inline\">Inspect</code></a> protocol converts an Elixir data structure into an\nalgebra document.</p></div></div>",
+        "name": "Inspect",
+        "url": "Inspect.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Inspect.Algebra.html\">Inspect.Algebra</a></div><div class=\"summary-synopsis\"><p>A set of functions for creating and manipulating algebra\ndocuments.</p></div></div>",
+        "name": "Inspect",
+        "url": "Inspect.Algebra.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Inspect.Error.html\">Inspect.Error</a></div><div class=\"summary-synopsis\"><p>Raised when a struct cannot be inspected.</p></div></div>",
+        "name": "Inspect",
+        "url": "Inspect.Error.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Inspect.Opts.html\">Inspect.Opts</a></div><div class=\"summary-synopsis\"><p>Defines the options used by the <a href=\"https://hexdocs.pm/elixir/Inspect.html\"><code class=\"inline\">Inspect</code></a> protocol.</p></div></div>",
+        "name": "Inspect",
+        "url": "Inspect.Opts.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Integer.html\">Integer</a></div><div class=\"summary-synopsis\"><p>Functions for working with integers.</p></div></div>",
+        "name": "Integer",
+        "url": "Integer.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Kernel.html\">Kernel</a></div><div class=\"summary-synopsis\"><p><a href=\"#content\"><code class=\"inline\">Kernel</code></a> is Elixir&apos;s default environment.</p></div></div>",
+        "name": "Kernel",
+        "url": "Kernel.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Kernel.ParallelCompiler.html\">Kernel.ParallelCompiler</a></div><div class=\"summary-synopsis\"><p>A module responsible for compiling and requiring files in parallel.</p></div></div>",
+        "name": "Kernel",
+        "url": "Kernel.ParallelCompiler.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Kernel.SpecialForms.html\">Kernel.SpecialForms</a></div><div class=\"summary-synopsis\"><p>Special forms are the basic building blocks of Elixir, and therefore\ncannot be overridden by the developer.</p></div></div>",
+        "name": "Kernel",
+        "url": "Kernel.SpecialForms.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"KeyError.html\">KeyError</a></div></div>",
+        "name": "KeyError",
+        "url": "KeyError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Keyword.html\">Keyword</a></div><div class=\"summary-synopsis\"><p>A keyword list is a list that consists exclusively of two-element tuples.</p></div></div>",
+        "name": "Keyword",
+        "url": "Keyword.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"List.html\">List</a></div><div class=\"summary-synopsis\"><p>Linked lists hold zero, one, or more elements in the chosen order.</p></div></div>",
+        "name": "List",
+        "url": "List.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"List.Chars.html\">List.Chars</a></div><div class=\"summary-synopsis\"><p>The <a href=\"#content\"><code class=\"inline\">List.Chars</code></a> protocol is responsible for\nconverting a structure to a charlist (only if applicable).</p></div></div>",
+        "name": "List",
+        "url": "List.Chars.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Macro.html\">Macro</a></div><div class=\"summary-synopsis\"><p>Macros are compile-time constructs that are invoked with Elixir&apos;s AST\nas input and a superset of Elixir&apos;s AST as output.</p></div></div>",
+        "name": "Macro",
+        "url": "Macro.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Macro.Env.html\">Macro.Env</a></div><div class=\"summary-synopsis\"><p>A struct that holds compile time environment information.</p></div></div>",
+        "name": "Macro",
+        "url": "Macro.Env.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Map.html\">Map</a></div><div class=\"summary-synopsis\"><p>Maps are the &quot;go to&quot; key-value data structure in Elixir.</p></div></div>",
+        "name": "Map",
+        "url": "Map.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"MapSet.html\">MapSet</a></div><div class=\"summary-synopsis\"><p>Functions that work on sets.</p></div></div>",
+        "name": "MapSet",
+        "url": "MapSet.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"MatchError.html\">MatchError</a></div></div>",
+        "name": "MatchError",
+        "url": "MatchError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Module.html\">Module</a></div><div class=\"summary-synopsis\"><p>Provides functions to deal with modules during compilation time.</p></div></div>",
+        "name": "Module",
+        "url": "Module.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Module.Types.Error.html\">Module.Types.Error</a></div></div>",
+        "name": "Module",
+        "url": "Module.Types.Error.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"NaiveDateTime.html\">NaiveDateTime</a></div><div class=\"summary-synopsis\"><p>A NaiveDateTime struct (without a time zone) and functions.</p></div></div>",
+        "name": "NaiveDateTime",
+        "url": "NaiveDateTime.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Node.html\">Node</a></div><div class=\"summary-synopsis\"><p>Functions related to VM nodes.</p></div></div>",
+        "name": "Node",
+        "url": "Node.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"OptionParser.html\">OptionParser</a></div><div class=\"summary-synopsis\"><p>Functions for parsing command line arguments.</p></div></div>",
+        "name": "OptionParser",
+        "url": "OptionParser.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"OptionParser.ParseError.html\">OptionParser.ParseError</a></div></div>",
+        "name": "OptionParser",
+        "url": "OptionParser.ParseError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Path.html\">Path</a></div><div class=\"summary-synopsis\"><p>This module provides conveniences for manipulating or\nretrieving file system paths.</p></div></div>",
+        "name": "Path",
+        "url": "Path.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Port.html\">Port</a></div><div class=\"summary-synopsis\"><p>Functions for interacting with the external world through ports.</p></div></div>",
+        "name": "Port",
+        "url": "Port.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Process.html\">Process</a></div><div class=\"summary-synopsis\"><p>Conveniences for working with processes and the process dictionary.</p></div></div>",
+        "name": "Process",
+        "url": "Process.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Protocol.html\">Protocol</a></div><div class=\"summary-synopsis\"><p>Reference and functions for working with protocols.</p></div></div>",
+        "name": "Protocol",
+        "url": "Protocol.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Protocol.UndefinedError.html\">Protocol.UndefinedError</a></div></div>",
+        "name": "Protocol",
+        "url": "Protocol.UndefinedError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Range.html\">Range</a></div><div class=\"summary-synopsis\"><p>Ranges represent a sequence of one or many, ascending\nor descending, consecutive integers.</p></div></div>",
+        "name": "Range",
+        "url": "Range.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Record.html\">Record</a></div><div class=\"summary-synopsis\"><p>Module to work with, define, and import records.</p></div></div>",
+        "name": "Record",
+        "url": "Record.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Regex.html\">Regex</a></div><div class=\"summary-synopsis\"><p>Provides regular expressions for Elixir.</p></div></div>",
+        "name": "Regex",
+        "url": "Regex.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Regex.CompileError.html\">Regex.CompileError</a></div></div>",
+        "name": "Regex",
+        "url": "Regex.CompileError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Registry.html\">Registry</a></div><div class=\"summary-synopsis\"><p>A local, decentralized and scalable key-value process storage.</p></div></div>",
+        "name": "Registry",
+        "url": "Registry.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"RuntimeError.html\">RuntimeError</a></div></div>",
+        "name": "RuntimeError",
+        "url": "RuntimeError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Set.html\">Set</a><span class=\"deprecated\" title=\"Use MapSet instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Generic API for sets.</p></div></div>",
+        "name": "Set",
+        "url": "Set.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Stream.html\">Stream</a></div><div class=\"summary-synopsis\"><p>Functions for creating and composing streams.</p></div></div>",
+        "name": "Stream",
+        "url": "Stream.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"String.html\">String</a></div><div class=\"summary-synopsis\"><p>Strings in Elixir are UTF-8 encoded binaries.</p></div></div>",
+        "name": "String",
+        "url": "String.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"String.Chars.html\">String.Chars</a></div><div class=\"summary-synopsis\"><p>The <a href=\"#content\"><code class=\"inline\">String.Chars</code></a> protocol is responsible for\nconverting a structure to a binary (only if applicable).</p></div></div>",
+        "name": "String",
+        "url": "String.Chars.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"StringIO.html\">StringIO</a></div><div class=\"summary-synopsis\"><p>Controls an IO device process that wraps a string.</p></div></div>",
+        "name": "StringIO",
+        "url": "StringIO.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Supervisor.html\">Supervisor</a></div><div class=\"summary-synopsis\"><p>A behaviour module for implementing supervisors.</p></div></div>",
+        "name": "Supervisor",
+        "url": "Supervisor.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Supervisor.Spec.html\">Supervisor.Spec</a><span class=\"deprecated\" title=\"Use the new child specifications outlined in the Supervisor module instead\">deprecated</span></div><div class=\"summary-synopsis\"><p>Outdated functions for building child specifications.</p></div></div>",
+        "name": "Supervisor",
+        "url": "Supervisor.Spec.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"SyntaxError.html\">SyntaxError</a></div></div>",
+        "name": "SyntaxError",
+        "url": "SyntaxError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"System.html\">System</a></div><div class=\"summary-synopsis\"><p>The <a href=\"#content\"><code class=\"inline\">System</code></a> module provides functions that interact directly\nwith the VM or the host system.</p></div></div>",
+        "name": "System",
+        "url": "System.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"SystemLimitError.html\">SystemLimitError</a></div></div>",
+        "name": "SystemLimitError",
+        "url": "SystemLimitError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Task.html\">Task</a></div><div class=\"summary-synopsis\"><p>Conveniences for spawning and awaiting tasks.</p></div></div>",
+        "name": "Task",
+        "url": "Task.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Task.Supervisor.html\">Task.Supervisor</a></div><div class=\"summary-synopsis\"><p>A task supervisor.</p></div></div>",
+        "name": "Task",
+        "url": "Task.Supervisor.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Time.html\">Time</a></div><div class=\"summary-synopsis\"><p>A Time struct and functions.</p></div></div>",
+        "name": "Time",
+        "url": "Time.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"TokenMissingError.html\">TokenMissingError</a></div></div>",
+        "name": "TokenMissingError",
+        "url": "TokenMissingError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"TryClauseError.html\">TryClauseError</a></div></div>",
+        "name": "TryClauseError",
+        "url": "TryClauseError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Tuple.html\">Tuple</a></div><div class=\"summary-synopsis\"><p>Functions for working with tuples.</p></div></div>",
+        "name": "Tuple",
+        "url": "Tuple.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"URI.html\">URI</a></div><div class=\"summary-synopsis\"><p>Utilities for working with URIs.</p></div></div>",
+        "name": "URI",
+        "url": "URI.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"UndefinedFunctionError.html\">UndefinedFunctionError</a></div></div>",
+        "name": "UndefinedFunctionError",
+        "url": "UndefinedFunctionError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"UnicodeConversionError.html\">UnicodeConversionError</a></div></div>",
+        "name": "UnicodeConversionError",
+        "url": "UnicodeConversionError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Version.html\">Version</a></div><div class=\"summary-synopsis\"><p>Functions for parsing and matching versions against requirements.</p></div></div>",
+        "name": "Version",
+        "url": "Version.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Version.InvalidRequirementError.html\">Version.InvalidRequirementError</a></div></div>",
+        "name": "Version",
+        "url": "Version.InvalidRequirementError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Version.InvalidVersionError.html\">Version.InvalidVersionError</a></div></div>",
+        "name": "Version",
+        "url": "Version.InvalidVersionError.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"Version.Requirement.html\">Version.Requirement</a></div><div class=\"summary-synopsis\"><p>A struct that holds version requirement information.</p></div></div>",
+        "name": "Version",
+        "url": "Version.Requirement.html"
+    },
+    {
+        "content": "<div class=\"summary-row\"><div class=\"summary-signature\"><a href=\"WithClauseError.html\">WithClauseError</a></div></div>",
+        "name": "WithClauseError",
+        "url": "WithClauseError.html"
+    }
+]
