@@ -12,7 +12,7 @@ defmodule Codebot.Repository do
 
     @base_url "https://hexdocs.pm/elixir"
 
-    @local_path "./repo"
+    @local_path "./store"
 
     def refresh_cache() do
         @base_url <> "/api-reference.html#content"
