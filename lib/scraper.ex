@@ -2,15 +2,6 @@ defmodule Codebot.Scraper do
     require Logger
 
     @moduledoc """
-    1. Go to the https://hexdocs.pm/elixir/api-reference.html#content
-    2. Search for the module name
-    3. Navigate to the module page. eg. https://hexdocs.pm/elixir/String.html
-    4. Extract the module description
-
-    5. Look for the module function
-    6. Extract the module functions and description
-    7. Save all the content to a json file
-
     How this should look like in the end
     ```
     [
@@ -35,25 +26,17 @@ defmodule Codebot.Scraper do
 
     @local_path "./store"
 
-    def refresh_cache() do
+    def scrape() do
         @base_url <> "/api-reference.html#content"
         |> get_page_content
         |> extract_modules
-        |> store_to_file(@local_path <> "/modules.json")
-
-        read_from_file(@local_path <> "/modules.json")
-        |> get_page_content
-        |> Enum.map(fn (content)-> extract_functions content end)
-        |> store_to_file(@local_path <> "/functions.json")
+        |> Enum.map(&add_functions_to_module/1)
+        # |> store_to_file(@local_path <> "/functions.json")
     end
 
     defp get_page_content(url) when is_binary(url) do
         %HTTPoison.Response{body: body, status_code: code} = HTTPoison.get!(url, [], follow_redirect: true)
         handle_response(body, code)
-    end
-
-    defp get_page_content(list) when is_list(list) do
-        Enum.map(list, fn (summary)-> get_page_content "#{ @base_url }/#{ Map.get(summary, "url") }" end)
     end
 
     defp handle_response(body, 200) do
@@ -81,28 +64,34 @@ defmodule Codebot.Scraper do
                 |> String.split(".")
                 |> Enum.at(0)
 
-            %{"url" => url, "name" => name, "content" => content}
+            %{"url" => "#{ @base_url }/#{ url }", "name" => name, "content" => content}
         end)
     end
 
     defp extract_functions(content) do
-        content
-        |> Floki.parse_document!
-        |> Floki.find("div .summary-functions")
-        |> Floki.find("div .summary-row")
-        |> Enum.map(fn (summary)->
-            anchor =
-                summary
-                |> Floki.find("a")
-                |> Floki.attribute("href")
+        Floki.parse_document!(content)
+        |> Floki.find("div .functions-list")
+        |> Floki.find("section")
+        |> Enum.map(fn (detail)->
+            id =
+                detail
+                |> Floki.attribute("id")
                 |> Enum.at(0)
-            name =
-                summary
-                |> Floki.find("a")
-                |> Floki.text
-
-            %{"a" => anchor, "name" => name}
+            html = Floki.raw_html(detail)
+            %{"anchor" => id, "description" => html}
         end)
+    end
+
+    defp add_functions_to_module(%{"url" => url, "name" => _, "content" => _} = module) do
+        funcs =
+            get_page_content(url)
+            |> extract_functions
+            |> Enum.map(fn (func)->
+                %{"anchor" => anchor, "description" => _} = func
+                Map.put(func, "url", "#{ url }#{ anchor }")
+            end)
+
+        Map.put(module, "functions", funcs)
     end
 
     defp store_to_file(content, file) do

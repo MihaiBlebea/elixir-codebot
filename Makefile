@@ -14,5 +14,8 @@ docker-build:
 docker-run:
 	docker run -t demo-elixir-app
 
+docker-up:
+	docker-compose up -d
+
 docs:
 	mix docs

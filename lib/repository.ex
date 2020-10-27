@@ -1,4 +1,5 @@
 defmodule Codebot.Repository do
+    # https://github.com/zookzook/elixir-mongodb-driver
 
     @collection "elixir"
 
@@ -8,6 +9,10 @@ defmodule Codebot.Repository do
             {:ok, pid} -> pid
             {:error, _} -> raise "Could not connect to mongo db"
         end
+    end
+
+    def drop(pid, collection) do
+        Mongo.drop_collection(pid, collection)
     end
 
     @spec insert_one(pid | atom, map) :: {:error, Mongo.Error.t()} | {:ok, Mongo.InsertOneResult.t()}
