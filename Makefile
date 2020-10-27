@@ -1,13 +1,18 @@
-setup: build-frontend build-backend
+setup: frontend docs backend
 
-build-frontend: 
+frontend: 
 	cd ./front && npm run build
 
-build-backend:
+backend:
 	mix run --no-halt
 
-build-docker:
+docker: docker-build docker-run
+
+docker-build:
 	docker build -t demo-elixir-app .
 
-run-docker:
-	ocker run -t demo-elixir-app
+docker-run:
+	docker run -t demo-elixir-app
+
+docs:
+	mix docs

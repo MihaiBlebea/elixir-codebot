@@ -7,6 +7,9 @@ defmodule Codebot.Web.Router do
     plug Plug.Static,
         at: "/static",
         from: "./front/dist/static"
+    plug Plug.Static,
+        at: "/",
+        from: "./doc"
     plug :match
     plug :dispatch
 
@@ -18,6 +21,12 @@ defmodule Codebot.Web.Router do
         conn
         |> put_resp_header("content-type", "text/html; charset=utf-8")
         |> send_file(200, "./front/dist/index.html")
+    end
+
+    get "/docs" do
+        conn
+        |> put_resp_header("content-type", "text/html; charset=utf-8")
+        |> send_file(200, "./doc/index.html")
     end
 
     post "/message" do

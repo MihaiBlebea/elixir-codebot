@@ -72,6 +72,7 @@ export default {
                 console.error(error)
                 this.playNotification()
                 this.storeMessage({
+                    fromBot: true,
                     text: this.defaultMessage,
                 })
             } finally {
