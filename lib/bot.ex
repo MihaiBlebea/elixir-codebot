@@ -4,7 +4,6 @@ defmodule Codebot.Bot do
     def query(term) do
         term
         |> Codebot.Witai.message
-        |> IO.inspect
         |> pick_intent
     end
 

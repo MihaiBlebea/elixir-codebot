@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="p-3 bottom-pannel w-100">
-            <vue-input-area v-on:sent="sendMessage" />
+            <vue-input-area v-on:sent="sendMessageSocket" />
         </div>
     </vue-frame>
 </template>
@@ -40,10 +40,22 @@ export default {
             messages: [],
             loading: false,
             requestOptions: { timeout: 2 * 1000 },
-            defaultMessage: "Sorry, could not get that. Please repeat."
+            defaultMessage: "Sorry, could not get that. Please repeat.",
+            socket: null
         }
     },
     methods: {
+        sendMessageSocket: function(ev) {
+            this.storeMessage({
+                text: ev,
+            })
+
+            this.socket.send(
+                JSON.stringify({
+                    data: { message: ev },
+                })
+            )
+        },
         sendMessage: async function(ev) {
             this.storeMessage({
                 text: ev,
@@ -101,7 +113,30 @@ export default {
         },
         sleep: function(ms) {
             return new Promise(resolve => setTimeout(resolve, ms))
-        }
+        },
+        setupSocket: function() {
+            this.socket = new WebSocket("ws://localhost:3001/ws/chat")
+
+            this.socket.addEventListener("message", async (event) => {
+                let response = JSON.parse(event.data)
+                for (let i = 0; i < response.messages.length; i++) {
+                    let msg = response.messages[i]
+                    this.playNotification()
+                    msg.fromBot = true
+                    this.storeMessage(msg)
+                    if (i < response.messages.length - 1) {
+                        await this.sleep(500)
+                    }
+                }
+            })
+
+            this.socket.addEventListener("close", () => {
+                this.setupSocket()
+            })
+        },
+    },
+    mounted: function() {
+        this.setupSocket()
     }
 }
 </script>

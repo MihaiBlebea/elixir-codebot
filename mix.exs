@@ -26,12 +26,15 @@ defmodule Codebot.MixProject do
     defp deps do
         [
             {:plug_cowboy, "~> 2.0"},
+            {:cowboy, "~> 2.4"},
+            {:plug, "~> 1.7"},
             {:cors_plug, "~> 1.2"},
             {:httpoison, "~> 1.6"},
             {:floki, "~> 0.29.0"},
             {:json, "~> 1.2"},
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
-            {:mongodb_driver, "~> 0.5"}
+            {:mongodb_driver, "~> 0.5"},
+            # {:socket, "~> 0.3"},
         ]
     end
 end

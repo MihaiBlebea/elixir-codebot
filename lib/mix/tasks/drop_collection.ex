@@ -8,6 +8,6 @@ defmodule Mix.Tasks.DropCollection do
         Mix.Task.run("app.start")
 
         Repo.connect()
-        |> Repo.drop("elixir")
+        |> Repo.drop(:journals)
     end
 end

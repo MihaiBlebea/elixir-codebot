@@ -10,7 +10,7 @@ defmodule Codebot.Web.Message do
         }
     end
 
-    @spec encode(map) :: map
+    @spec encode(%Codebot.Web.Message{}) :: map
     def encode(message) do
         message
         |> Map.drop([:__struct__])
