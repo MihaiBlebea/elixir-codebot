@@ -118,16 +118,21 @@ export default {
             this.socket = new WebSocket("ws://localhost:3001/ws/chat")
 
             this.socket.addEventListener("message", async (event) => {
+                this.toggleLoading()
+                
                 let response = JSON.parse(event.data)
                 for (let i = 0; i < response.messages.length; i++) {
-                    let msg = response.messages[i]
                     this.playNotification()
+                    let msg = response.messages[i]
                     msg.fromBot = true
                     this.storeMessage(msg)
                     if (i < response.messages.length - 1) {
                         await this.sleep(500)
                     }
                 }
+
+                this.scrollToBottom()
+                this.toggleLoading()
             })
 
             this.socket.addEventListener("close", () => {

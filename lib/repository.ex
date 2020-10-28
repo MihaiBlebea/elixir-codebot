@@ -22,4 +22,10 @@ defmodule Codebot.Repository do
     def find_one(pid, collection, query) when is_atom(collection) and is_map(query) do
         Mongo.find_one(pid, collection, query)
     end
+
+    @spec find_many(pid | atom, atom, map) :: list
+    def find_many(pid, collection, query) when is_atom(collection) and is_map(query) do
+        Mongo.find(pid, collection, query)
+        |> Enum.to_list
+    end
 end

@@ -40,19 +40,26 @@ defmodule Codebot.Bot do
         )
     end
 
-    defp pick_intent({:search, entities}) do
+    defp pick_intent({:create_journal, entities}) do
         IO.inspect entities
-        # _response = Codebot.Intent.SearchIntent.get_response(entities)
+
+        has_entity(entities)
+    end
+
+    defp pick_intent({:list_journals, entities}) do
+        IO.inspect entities
+
+        messages =
+            Codebot.Repository.connect
+            |> Codebot.Repository.find_many(:journals, %{})
+            |> IO.inspect
+            |> Enum.map(fn (journal)->
+                Codebot.Web.Message.new(Map.fetch!(journal, "subject"))
+            end)
 
         Codebot.Web.Response.new(
             "token",
-            [
-                Codebot.Web.Message.new("I am looking for some functions for you"),
-                Codebot.Web.Message.new("How about this one?"),
-                Codebot.Web.Message.new("String.split/1"),
-                Codebot.Web.Message.new("Seems like a good piece of code"),
-                Codebot.Web.Message.new("Can I help you with something more?")
-            ]
+            messages
         )
     end
 
@@ -69,5 +76,27 @@ defmodule Codebot.Bot do
         msg_list
         |> Enum.take_random(1)
         |> Enum.at(0)
+    end
+
+    defp has_entity(%{"subject" => subject}) do
+        Codebot.Repository.insert_one(
+            Codebot.Repository.connect(),
+            :journals,
+            Codebot.Model.Journal.new(
+                subject,
+                "",
+                ""
+            )
+        )
+
+        Codebot.Web.Response.new(
+            "token",
+            [
+                Codebot.Web.Message.new("Added a new journal for you"),
+                Codebot.Web.Message.new("With the subject..."),
+                Codebot.Web.Message.new(subject),
+                Codebot.Web.Message.new("Anything else that I can help you with?"),
+            ]
+        )
     end
 end
