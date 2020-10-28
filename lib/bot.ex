@@ -99,4 +99,22 @@ defmodule Codebot.Bot do
             ]
         )
     end
+
+    # defp has_entity(%{"description" => description}) do
+    #     Codebot.Repository.connect()
+    #     |> Codebot.Repository.update_one(
+    #         :journals,
+    #         %{"_id" => }
+    #     )
+
+    #     Codebot.Web.Response.new(
+    #         "token",
+    #         [
+    #             Codebot.Web.Message.new("Added a new journal for you"),
+    #             Codebot.Web.Message.new("With the subject..."),
+    #             Codebot.Web.Message.new(subject),
+    #             Codebot.Web.Message.new("Anything else that I can help you with?"),
+    #         ]
+    #     )
+    # end
 end

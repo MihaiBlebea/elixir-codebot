@@ -28,4 +28,12 @@ defmodule Codebot.Repository do
         Mongo.find(pid, collection, query)
         |> Enum.to_list
     end
+
+    def update_one(pid, collection, find_query, update_query)
+        when is_atom(collection)
+        and is_map(find_query)
+        and is_map(update_query) do
+
+        Mongo.update_one(pid, collection, find_query, update_query)
+    end
 end
