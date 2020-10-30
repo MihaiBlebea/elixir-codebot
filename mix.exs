@@ -34,7 +34,7 @@ defmodule Codebot.MixProject do
             {:json, "~> 1.2"},
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
             {:mongodb_driver, "~> 0.5"},
-            # {:socket, "~> 0.3"},
+            { :uuid, "~> 1.1" },
         ]
     end
 end
