@@ -3,9 +3,7 @@ defmodule Codebot.Witai do
 
     @base_url "https://api.wit.ai"
 
-    @varsion "20201023"
-
-    @token "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
+    @version "20201023"
 
     @long_timeout 10000
 
@@ -48,7 +46,7 @@ defmodule Codebot.Witai do
     end
 
     defp get_default_headers() do
-        ["Authorization": "Bearer #{ @token }", "Content-Type": "application/json"]
+        ["Authorization": "Bearer #{ get_witai_token() }", "Content-Type": "application/json"]
     end
 
     defp decode_body(body, 200) do
@@ -69,7 +67,18 @@ defmodule Codebot.Witai do
         URI.encode(term)
     end
 
+    def get_witai_token() do
+        case Application.fetch_env(:codebot, :witai_token) do
+            {:ok, token} -> token
+            _ -> raise "Could not find key witai_token in config"
+        end
+    end
+
     # Message
+
+    def message("") do
+        {:noreply, %{}}
+    end
 
     @spec message(binary) :: {atom, %{}}
     def message(term) when is_binary(term) do
@@ -78,7 +87,7 @@ defmodule Codebot.Witai do
             "intents" => intents,
             "text" => _text,
             "traits" => _traits
-        } = get "#{ @base_url }/message?v=#{ @varsion }&q=#{ encode_message(term) }"
+        } = get "#{ @base_url }/message?v=#{ @version }&q=#{ encode_message(term) }"
         intent = extract_intent intents
         entity_map = extract_entities entities
 
@@ -124,7 +133,7 @@ defmodule Codebot.Witai do
 
     @spec create_intent(binary) :: map
     def create_intent(name) when is_binary(name) do
-        url = "#{ @base_url }/intents?v=#{ @varsion }"
+        url = "#{ @base_url }/intents?v=#{ @version }"
         {:ok, body} = JSON.encode(%{"name" => name})
         %HTTPoison.Response{body: body, status_code: code} = HTTPoison.post!(url, body, get_default_headers())
         decode_body(body, code)
@@ -132,61 +141,61 @@ defmodule Codebot.Witai do
 
     @spec delete_intent(binary) :: :ok
     def delete_intent(name) when is_binary(name) do
-        delete "#{ @base_url }/intents/#{ name }?v=#{ @varsion }"
+        delete "#{ @base_url }/intents/#{ name }?v=#{ @version }"
     end
 
     @spec get_intent(binary) :: map
     def get_intent(name) when is_binary(name) do
-        get "#{ @base_url }/intents/#{ name }?v=#{ @varsion }"
+        get "#{ @base_url }/intents/#{ name }?v=#{ @version }"
     end
 
     # Entities
 
     @spec get_entities :: list
     def get_entities() do
-        get "#{ @base_url }/entities?v=#{ @varsion }"
+        get "#{ @base_url }/entities?v=#{ @version }"
     end
 
     @spec get_entity(binary) :: map
     def get_entity(name) when is_binary(name) do
-        get "#{ @base_url }/entities/#{ name }?v=#{ @varsion }"
+        get "#{ @base_url }/entities/#{ name }?v=#{ @version }"
     end
 
     @spec create_entity(map) :: map
     def create_entity(req_body) when is_map(req_body) do
-        post "#{ @base_url }/entities?v=#{ @varsion }", req_body
+        post "#{ @base_url }/entities?v=#{ @version }", req_body
     end
 
     @spec delete_entity(binary) :: :ok
     def delete_entity(name) when is_binary(name) do
-        delete "#{ @base_url }/entities/#{ name }?v=#{ @varsion }"
+        delete "#{ @base_url }/entities/#{ name }?v=#{ @version }"
     end
 
     @spec update_entity(binary, map) :: :ok
     def update_entity(name, req_body) when is_binary(name) and is_map(req_body) do
-        put "#{ @base_url }/entities/#{ name }?v=#{ @varsion }", req_body
+        put "#{ @base_url }/entities/#{ name }?v=#{ @version }", req_body
     end
 
     # Utterances
 
     @spec get_utterances(integer) :: list
     def get_utterances(limit) do
-        get "#{ @base_url }/utterances?v=#{ @varsion }&limit=#{ to_string(limit) }"
+        get "#{ @base_url }/utterances?v=#{ @version }&limit=#{ to_string(limit) }"
     end
 
     @spec get_utterances(integer, integer) :: list
     def get_utterances(limit, offset) do
-        get "#{ @base_url }/utterances?v=#{ @varsion }&limit=#{ to_string(limit) }&offset=#{ offset }"
+        get "#{ @base_url }/utterances?v=#{ @version }&limit=#{ to_string(limit) }&offset=#{ offset }"
     end
 
     @spec get_utterances(integer, integer, list) :: list
     def get_utterances(limit, offset, intents) do
         intents_str = Enum.join intents, ","
-        get "#{ @base_url }/utterances?v=#{ @varsion }&limit=#{ to_string(limit) }&offset=#{ offset }&intents=#{ intents_str }"
+        get "#{ @base_url }/utterances?v=#{ @version }&limit=#{ to_string(limit) }&offset=#{ offset }&intents=#{ intents_str }"
     end
 
     @spec create_utterances(list) :: map
     def create_utterances(list) do
-        post "#{ @base_url }/utterances?v=#{ @varsion }", list
+        post "#{ @base_url }/utterances?v=#{ @version }", list
     end
 end
