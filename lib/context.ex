@@ -1,6 +1,7 @@
 defmodule Codebot.Context do
+    @behaviour IKeepContext
 
-    defstruct id: nil, name: nil, props: nil
+    defstruct id: nil, intent: nil, props: nil
 
     @spec start_link :: pid
     def start_link() do
@@ -16,13 +17,18 @@ defmodule Codebot.Context do
         Agent.get(pid, fn (state)-> Map.get(state, key) end)
     end
 
+    @spec getId(atom | pid) :: binary
     def getId(pid) do
         get(pid, :id)
     end
 
-    @spec put(atom | pid, binary | atom, any) :: :ok
+    @spec put(atom | pid, binary | atom, any) :: :ok | :fail
     def put(pid, key, value) do
-        Agent.update(pid, fn (state)-> Map.put(state, key, value) end)
+        cond do
+            key == :intent -> Agent.update(pid, fn (state)-> Map.put(state, :intent, value) end)
+            key == :props and is_map(value) -> Agent.update(pid, fn (state)-> Map.put(state, :props, value) end)
+            true -> :fail
+        end
     end
 
     @spec del(pid | atom, binary) :: :ok
