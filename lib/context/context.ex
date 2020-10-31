@@ -1,5 +1,5 @@
 defmodule Codebot.Context do
-    @behaviour IKeepContext
+    @behaviour Codebot.Context.IKeepContext
 
     defstruct id: nil, intent: nil, props: nil
 

@@ -1,4 +1,4 @@
-defmodule Codebot.Slack do
+defmodule Codebot.Infra.Slack do
     require Logger
 
     # @token "T01ECUVCAMN/B01ED2FCHJL/yWVRxJ8MGo0cyEXJD8BXqBxM"

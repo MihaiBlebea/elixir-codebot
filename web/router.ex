@@ -48,9 +48,9 @@ defmodule Codebot.Web.Router do
 
         request
         |> decode_request
-        |> Codebot.Slack.handle_message
+        |> Codebot.Infra.Slack.handle_message
         |> Codebot.Bot.query
-        |> Codebot.Slack.send_msg
+        |> Codebot.Infra.Slack.send_msg
 
         send_response(conn, 200)
     end
@@ -60,7 +60,7 @@ defmodule Codebot.Web.Router do
 
         request
         |> IO.inspect
-        |> Codebot.Slack.handle_command
+        |> Codebot.Infra.Slack.handle_command
         |> IO.inspect
         # |> Codebot.Slack.handle_call
         # |> Codebot.Bot.query

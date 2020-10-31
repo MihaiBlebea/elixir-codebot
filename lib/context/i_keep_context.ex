@@ -1,4 +1,4 @@
-defmodule IKeepContext do
+defmodule Codebot.Context.IKeepContext do
     @callback get(atom | pid, binary | atom) :: any
 
     @callback getId(atom | pid) :: binary
