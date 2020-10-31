@@ -1,4 +1,4 @@
-defmodule Codebot.Infra.Witai do
+defmodule Codebot.Adapter.Witai do
     require Logger
 
     @base_url "https://api.wit.ai"

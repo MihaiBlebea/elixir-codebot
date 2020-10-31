@@ -36,7 +36,6 @@ defmodule Codebot.Web.Router do
             request
             |> decode_request
             |> Codebot.Bot.query
-            |> IO.inspect
             |> send_response(conn, 200)
         rescue
             err -> send_response(err, conn, 500)
@@ -48,9 +47,9 @@ defmodule Codebot.Web.Router do
 
         request
         |> decode_request
-        |> Codebot.Infra.Slack.handle_message
+        |> Codebot.Adapter.Slack.handle_message
         |> Codebot.Bot.query
-        |> Codebot.Infra.Slack.send_msg
+        |> Codebot.Adapter.Slack.send_msg
 
         send_response(conn, 200)
     end
@@ -59,12 +58,7 @@ defmodule Codebot.Web.Router do
         {:ok, request, _} = Plug.Conn.read_body(conn)
 
         request
-        |> IO.inspect
-        |> Codebot.Infra.Slack.handle_command
-        |> IO.inspect
-        # |> Codebot.Slack.handle_call
-        # |> Codebot.Bot.query
-        # |> Codebot.Slack.send_msg
+        |> Codebot.Adapter.Slack.handle_command
 
         send_response(conn, 200)
     end
