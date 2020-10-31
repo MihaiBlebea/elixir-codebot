@@ -2,14 +2,6 @@ defmodule Codebot.Context do
 
     defstruct id: nil, name: nil, props: nil
 
-    # @spec new(map, atom) :: %Codebot.Context{}
-    # def new(props, :create_journal) do
-    #     %Codebot.Context{
-    #         name: :create_journal,
-    #         props: props
-    #     }
-    # end
-
     @spec start_link :: pid
     def start_link() do
         id = UUID.uuid1()
