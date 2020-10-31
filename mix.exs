@@ -20,6 +20,7 @@ defmodule Codebot.MixProject do
         ]
     end
 
+    defp elixirc_paths(:test), do: ["lib", "web", "test/mocks"]
     defp elixirc_paths(_), do: ["lib", "web"]
 
     # Run "mix help deps" to learn about dependencies.

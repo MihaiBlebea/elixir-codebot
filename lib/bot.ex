@@ -3,8 +3,12 @@ defmodule Codebot.Bot do
     @spec query(binary) :: binary
     def query(term) do
         term
-        |> Codebot.Witai.message
+        |> get_nlp_module().message
         |> pick_intent
+    end
+
+    defp get_nlp_module() do
+        Application.fetch_env!(:codebot, :nlp_module)
     end
 
     defp pick_intent({:noreply, _entities}) do

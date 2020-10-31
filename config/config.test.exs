@@ -9,6 +9,4 @@ config :codebot,
     slack_token: "T01ECUVCAMN/B01ED2FCHJL/yWVRxJ8MGo0cyEXJD8BXqBxM",
     mongo_url: "mongodb://localhost:27015/",
     mongo_db: "codebot-v1",
-    nlp_module: Codebot.Witai
-
-import_config "config.#{ Mix.env() }.exs"
+    nlp_module: Codebot.Mock.Witai
