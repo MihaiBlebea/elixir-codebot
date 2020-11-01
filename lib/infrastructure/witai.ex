@@ -1,11 +1,18 @@
 defmodule Codebot.Adapter.Witai do
     require Logger
 
+    @typedoc """
+    Request_body can be a map or a list
+    """
+    @type request_body :: map | list
+
     @base_url "https://api.wit.ai"
 
     @version "20201023"
 
     @long_timeout 10000
+
+    defguard is_request_body(body) when is_map(body) or is_list(body)
 
     # Shared
 
@@ -16,7 +23,7 @@ defmodule Codebot.Adapter.Witai do
     end
 
     @spec post(binary, map) :: map | list
-    def post(url, req_body) when is_binary(url) and is_map(req_body) do
+    def post(url, req_body) when is_binary(url) and is_request_body(req_body) do
         {:ok, req_body} = JSON.encode(req_body)
         %HTTPoison.Response{body: body, status_code: code} = HTTPoison.post!(url, req_body, get_default_headers())
         decode_body(body, code)
@@ -161,6 +168,19 @@ defmodule Codebot.Adapter.Witai do
         get "#{ @base_url }/entities/#{ name }?v=#{ @version }"
     end
 
+    @doc """
+    ### Request body:
+    ```
+    %{
+        "name" => "entity_name",
+        "roles" => [],
+        "lookups" => [
+            "free-text",
+            "keywords"
+        ]
+    }
+    ```
+    """
     @spec create_entity(map) :: map
     def create_entity(req_body) when is_map(req_body) do
         post "#{ @base_url }/entities?v=#{ @version }", req_body
@@ -194,6 +214,27 @@ defmodule Codebot.Adapter.Witai do
         get "#{ @base_url }/utterances?v=#{ @version }&limit=#{ to_string(limit) }&offset=#{ offset }&intents=#{ intents_str }"
     end
 
+    @doc """
+    ### Request body:
+    ```
+    [
+        %{
+            "text" => "I want to buy a bread",
+            "intent" => "buy_bread",
+            "entities" => [
+                %{
+                    "entity" => "wit$location:to",
+                    "start" => 17,
+                    "end" => 20,
+                    "body" => "sfo",
+                    "entities" => []
+                }
+            ],
+            "traits" => []
+        }
+    ]
+    ```
+    """
     @spec create_utterances(list) :: map
     def create_utterances(list) do
         post "#{ @base_url }/utterances?v=#{ @version }", list

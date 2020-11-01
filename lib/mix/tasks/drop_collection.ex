@@ -4,6 +4,7 @@ defmodule Mix.Tasks.DropCollection do
     alias Codebot.Repository, as: Repo
 
     @shortdoc "Drop the mongo db collection"
+    @spec run(any) :: none
     def run(_) do
         Mix.Task.run("app.start")
 
