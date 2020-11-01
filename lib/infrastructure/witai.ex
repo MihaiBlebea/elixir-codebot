@@ -12,43 +12,51 @@ defmodule Codebot.Adapter.Witai do
 
     @long_timeout 10000
 
+    @request_client Application.fetch_env!(:codebot, :witai_request_client)
+
     defguard is_request_body(body) when is_map(body) or is_list(body)
 
     # Shared
 
     @spec get(binary) :: map | list | binary
     def get(url) when is_binary(url) do
-        %HTTPoison.Response{body: body, status_code: code} = HTTPoison.get!(url, get_default_headers())
+        %{body: body, status_code: code} = @request_client.get!(url, get_default_headers())
         decode_body(body, code)
     end
 
-    @spec post(binary, map) :: map | list
+    @spec post(binary, map | list) :: map | list
     def post(url, req_body) when is_binary(url) and is_request_body(req_body) do
         {:ok, req_body} = JSON.encode(req_body)
-        %HTTPoison.Response{body: body, status_code: code} = HTTPoison.post!(url, req_body, get_default_headers())
+        %{body: body, status_code: code} = @request_client.post!(url, req_body, get_default_headers())
         decode_body(body, code)
     end
 
-    @spec delete(binary) :: :ok
+    @spec delete(binary) :: :ok | :fail
     def delete(url) when is_binary(url) do
-        %HTTPoison.Response{body: _body, status_code: code} = HTTPoison.delete!(url, get_default_headers(), recv_timeout: @long_timeout)
+        %{body: _body, status_code: code} = @request_client.delete!(url, get_default_headers(), recv_timeout: @long_timeout)
         case code do
             200 -> :ok
-            _ ->
-                Logger.error("Request failed with code " <> to_string(code))
-                raise "Request failed with code " <> to_string(code)
+            _ -> :fail
         end
     end
 
-    @spec put(binary, map) :: :ok
-    def put(url, req_body) when is_binary(url) and is_map(req_body) do
-        {:ok, body} = JSON.encode(req_body)
-        %HTTPoison.Response{body: _body, status_code: code} = HTTPoison.put!(url, body, get_default_headers(), recv_timeout: @long_timeout)
+    @spec delete(binary, list | map) :: :ok | :fail
+    def delete(url, req_body) when is_binary(url) and is_request_body(req_body) do
+        {:ok, req_body} = JSON.encode(req_body)
+        %{body: _body, status_code: code} = @request_client.request!(:delete, url, req_body, get_default_headers(), recv_timeout: @long_timeout)
         case code do
             200 -> :ok
-            _ ->
-                Logger.error("Request failed with code " <> to_string(code))
-                raise "Request failed with code " <> to_string(code)
+            _ -> :fail
+        end
+    end
+
+    @spec put(binary, map) :: :ok | :fail
+    def put(url, req_body) when is_binary(url) and is_map(req_body) do
+        {:ok, body} = JSON.encode(req_body)
+        %{body: _body, status_code: code} = @request_client.put!(url, body, get_default_headers(), recv_timeout: @long_timeout)
+        case code do
+            200 -> :ok
+            _ -> :fail
         end
     end
 
@@ -59,15 +67,13 @@ defmodule Codebot.Adapter.Witai do
     defp decode_body(body, 200) do
         case JSON.decode body do
             {:ok, body} -> body
-            _ ->
-                Logger.error(body)
-                raise "Could not decode the response body"
+            _ -> :fail
         end
     end
 
     defp decode_body(body, code) do
-        Logger.error(body)
-        raise "Request failed with code " <> to_string(code)
+        IO.inspect("code #{ code }: failed because #{ JSON.encode!(body) }")
+        :fail
     end
 
     defp encode_message(term) when is_binary(term) do
@@ -142,7 +148,7 @@ defmodule Codebot.Adapter.Witai do
     def create_intent(name) when is_binary(name) do
         url = "#{ @base_url }/intents?v=#{ @version }"
         {:ok, body} = JSON.encode(%{"name" => name})
-        %HTTPoison.Response{body: body, status_code: code} = HTTPoison.post!(url, body, get_default_headers())
+        %{body: body, status_code: code} = @request_client.post!(url, body, get_default_headers())
         decode_body(body, code)
     end
 
@@ -236,7 +242,22 @@ defmodule Codebot.Adapter.Witai do
     ```
     """
     @spec create_utterances(list) :: map
-    def create_utterances(list) do
+    def create_utterances(list) when is_list(list) do
         post "#{ @base_url }/utterances?v=#{ @version }", list
+    end
+
+    @doc """
+    ### Request body:
+    ```
+    [
+        %{
+            "text" => "I want to buy some bread"
+        }
+    ]
+    ```
+    """
+    @spec delete_utterances(list) :: :ok
+    def delete_utterances(list) when is_list(list) do
+        delete "#{ @base_url }/utterances?v=#{ @version }", list
     end
 end
