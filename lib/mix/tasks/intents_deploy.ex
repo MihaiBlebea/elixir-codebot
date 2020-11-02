@@ -1,8 +1,6 @@
 defmodule Mix.Tasks.IntentsDeploy do
     use Mix.Task
 
-    alias Codebot.Adapter.Witai, as: Witai
-
     @shortdoc "Deploy the intents to Witai using the API"
     @spec run(any) :: none
     def run(args) do
@@ -12,6 +10,7 @@ defmodule Mix.Tasks.IntentsDeploy do
         |> fetch_path_from_args
         |> read_file
         |> decode
+        |> IO.inspect
         |> deploy(:intent)
         |> deploy(:entity)
         |> deploy(:utterance)

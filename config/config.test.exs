@@ -9,5 +9,6 @@ config :codebot,
     slack_token: "T01ECUVCAMN/B01ED2FCHJL/yWVRxJ8MGo0cyEXJD8BXqBxM",
     mongo_url: "mongodb://localhost:27015/",
     mongo_db: "codebot-v1",
-    nlp_module: Codebot.Mock.Witai,
-    witai_request_client: Codebot.Mock.WitaiRequestClient
+    nlp_module: Codebot.Mock.Witai
+
+config :witai, token: ""

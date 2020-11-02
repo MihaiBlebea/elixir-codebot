@@ -1,8 +1,6 @@
 defmodule Mix.Tasks.IntentsDrop do
     use Mix.Task
 
-    alias Codebot.Adapter.Witai, as: Witai
-
     @shortdoc "Drop the intents to Witai using the API"
     @spec run(any) :: none
     def run(args) do

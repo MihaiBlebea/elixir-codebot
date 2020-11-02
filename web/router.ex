@@ -5,9 +5,6 @@ defmodule Codebot.Web.Router do
     # plug CORSPlug, origin: ["http://localhost:8080"]
     plug Plug.Logger
     plug Plug.Static,
-        at: "/static",
-        from: "./front/dist/static"
-    plug Plug.Static,
         at: "/",
         from: "./doc"
     plug :match
@@ -17,29 +14,10 @@ defmodule Codebot.Web.Router do
         send_resp(conn, 200, "All working fine")
     end
 
-    get "/" do
-        conn
-        |> put_resp_header("content-type", "text/html; charset=utf-8")
-        |> send_file(200, "./front/dist/index.html")
-    end
-
     get "/docs" do
         conn
         |> put_resp_header("content-type", "text/html; charset=utf-8")
         |> send_file(200, "./doc/index.html")
-    end
-
-    post "/message" do
-        try do
-            {:ok, request, _} = Plug.Conn.read_body(conn)
-
-            request
-            |> decode_request
-            |> Codebot.Bot.query
-            |> send_response(conn, 200)
-        rescue
-            err -> send_response(err, conn, 500)
-        end
     end
 
     post "/slack" do
@@ -72,20 +50,6 @@ defmodule Codebot.Web.Router do
             {:ok, body} -> body
             _ -> raise "Could not decode the request body"
         end
-    end
-
-    defp send_response(resp, conn, 200) when is_binary(resp) do
-        send_resp(conn, 200, resp)
-    end
-
-    defp send_response(resp, conn, 200) when is_map(resp) do
-        send_resp(conn, 200, encode_response(resp))
-    end
-
-    defp send_response(err, conn, 500) do
-        IO.inspect err
-        Logger.error(err)
-        send_resp(conn, 500, "Server error")
     end
 
     defp send_response(conn, 200) do

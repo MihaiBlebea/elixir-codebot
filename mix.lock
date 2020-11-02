@@ -34,4 +34,5 @@
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.5.0", "8516502659002cec19e244ebd90d312183064be95025a319a6c7e89f4bccd65b", [:rebar3], [], "hexpm", "d48d002e15f5cc105a696cf2f1bbb3fc72b4b770a184d8420c8db20da2674b38"},
   "uuid": {:hex, :uuid, "1.1.8", "e22fc04499de0de3ed1116b770c7737779f226ceefa0badb3592e64d5cfb4eb9", [:mix], [], "hexpm", "c790593b4c3b601f5dc2378baae7efaf5b3d73c4c6456ba85759905be792f2ac"},
   "websocket_client": {:hex, :websocket_client, "1.2.4", "14ec1ca4b6d247b44ccd9a80af8f6ca98328070f6c1d52a5cb00bc9d939d63b8", [:rebar3], [], "hexpm", "295a79cce15c208e03a545073f1318e97e7780aa9f2415e825cb9e338aecc305"},
+  "witai": {:hex, :witai, "0.1.1", "57cf6c4ecea4f68fb8cc9e5463dfc27a2af99dd3ba03004dd6d24e46cd146469", [:mix], [{:httpoison, "~> 1.6", [hex: :httpoison, repo: "hexpm", optional: false]}, {:json, "~> 1.2", [hex: :json, repo: "hexpm", optional: false]}], "hexpm", "b0a664b7cc0ac1ecf4e31cac9ce5f043631f359a5626576061c7d47d72f94072"},
 }

@@ -1,8 +1,6 @@
 defmodule Codebot.Adapter.Slack do
     require Logger
 
-    # @token "T01ECUVCAMN/B01ED2FCHJL/yWVRxJ8MGo0cyEXJD8BXqBxM"
-
     @base_url "https://hooks.slack.com/services"
 
     @spec send_msg(binary) :: :ok
