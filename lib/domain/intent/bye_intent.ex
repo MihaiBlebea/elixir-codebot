@@ -1,6 +1,7 @@
-defmodule Codebot.Intent.HelloIntent do
-    @behaviour Codebot.Intent.IExecuteIntent
+defmodule Codebot.Domain.Intent.ByeIntent do
+    @behaviour Codebot.Domain.Intent.IExecuteIntent
 
+    @spec execute(map) :: binary
     def execute(_params) do
         get_messages()
         |> pick_message
@@ -8,10 +9,10 @@ defmodule Codebot.Intent.HelloIntent do
 
     defp get_messages() do
         [
-            "Hey! How are you buddy?",
-            "What's new?",
-            "How are you today?",
-            "All good?"
+            "See you soon",
+            "Take care",
+            "Glad I could help",
+            "Have a good day"
         ]
     end
 

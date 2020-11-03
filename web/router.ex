@@ -2,6 +2,8 @@ defmodule Codebot.Web.Router do
     use Plug.Router
     require Logger
 
+    alias Codebot.Adapter.Slack
+
     # plug CORSPlug, origin: ["http://localhost:8080"]
     plug Plug.Logger
     plug Plug.Static,
@@ -25,9 +27,9 @@ defmodule Codebot.Web.Router do
 
         request
         |> decode_request
-        |> Codebot.Adapter.Slack.handle_message
+        |> Slack.handle_message
         |> Codebot.Bot.query
-        |> Codebot.Adapter.Slack.send_msg
+        |> Slack.send_msg
 
         send_response(conn, 200)
     end
@@ -36,7 +38,7 @@ defmodule Codebot.Web.Router do
         {:ok, request, _} = Plug.Conn.read_body(conn)
 
         request
-        |> Codebot.Adapter.Slack.handle_command
+        |> Slack.handle_command
 
         send_response(conn, 200)
     end

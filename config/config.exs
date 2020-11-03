@@ -1,5 +1,7 @@
 use Mix.Config
 
+alias Codebot.Domain.Worker
+
 config :mongodb_driver,
     host: "localhost"
 
@@ -11,5 +13,11 @@ config :codebot,
     nlp_module: Witai
 
 config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
+
+config :codebot, Worker,
+    jobs: [
+        # {"* * * * *", fn -> IO.inspect "Hello" end}
+        {"*/5 * * * *", &Worker.tell_joke/0 }
+    ]
 
 import_config "config.#{ Mix.env() }.exs"

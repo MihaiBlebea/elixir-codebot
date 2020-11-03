@@ -1,12 +1,14 @@
-defmodule Codebot.Context do
-    @behaviour Codebot.Context.IKeepContext
+defmodule Codebot.Domain.Context do
+    @behaviour Codebot.Domain.Context.IKeepContext
+
+    alias Codebot.Domain.Context
 
     defstruct id: nil, intent: nil, props: nil
 
     @spec start_link :: pid
     def start_link() do
         id = UUID.uuid1()
-        case Agent.start_link(fn ()-> %Codebot.Context{id: id} end) do
+        case Agent.start_link(fn ()-> %Context{id: id} end) do
             {:error, _} -> raise "Could not start a new context"
             {:ok, pid} -> pid
         end

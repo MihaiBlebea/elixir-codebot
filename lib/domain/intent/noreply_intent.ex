@@ -1,5 +1,5 @@
-defmodule Codebot.Intent.NoreplyIntent do
-    @behaviour Codebot.Intent.IExecuteIntent
+defmodule Codebot.Domain.Intent.NoreplyIntent do
+    @behaviour Codebot.Domain.Intent.IExecuteIntent
 
     def execute(_params) do
         get_messages()

@@ -1,10 +1,12 @@
 defmodule Codebot.Bot do
 
+    alias Codebot.Domain.Intent
+
     @spec query(binary) :: binary
     def query(term) do
         term
         |> get_nlp_module().message
-        |> Codebot.Intent.pick
+        |> Intent.pick
     end
 
     defp get_nlp_module() do

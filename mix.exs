@@ -36,7 +36,8 @@ defmodule Codebot.MixProject do
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
             {:mongodb_driver, "~> 0.5"},
             {:uuid, "~> 1.1"},
-            {:witai, "~> 0.1.1"}
+            {:witai, "~> 0.1.1"},
+            {:quantum, "~> 3.0"}
         ]
     end
 end
