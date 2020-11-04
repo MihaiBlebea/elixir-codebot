@@ -26,3 +26,6 @@ mongodb-volume
 
 rel
 
+.env
+
+.elixir_ls
