@@ -7,8 +7,10 @@ defmodule Codebot do
         IO.puts "Application starting on port #{ to_string(port) }..."
 
         children = [
-            {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]}
+            {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},
+            Codebot.Domain.Worker
         ]
+
         Supervisor.start_link(children, strategy: :one_for_one)
     end
 end

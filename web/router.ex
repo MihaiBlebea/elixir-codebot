@@ -2,11 +2,10 @@ defmodule Codebot.Web.Router do
     use Plug.Router
     require Logger
 
+    alias Codebot.Adapter.Slack
+
     # plug CORSPlug, origin: ["http://localhost:8080"]
     plug Plug.Logger
-    plug Plug.Static,
-        at: "/static",
-        from: "./front/dist/static"
     plug Plug.Static,
         at: "/",
         from: "./doc"
@@ -17,30 +16,31 @@ defmodule Codebot.Web.Router do
         send_resp(conn, 200, "All working fine")
     end
 
-    get "/" do
-        conn
-        |> put_resp_header("content-type", "text/html; charset=utf-8")
-        |> send_file(200, "./front/dist/index.html")
-    end
-
     get "/docs" do
         conn
         |> put_resp_header("content-type", "text/html; charset=utf-8")
         |> send_file(200, "./doc/index.html")
     end
 
-    post "/message" do
-        try do
-            {:ok, request, _} = Plug.Conn.read_body(conn)
+    post "/slack" do
+        {:ok, request, _} = Plug.Conn.read_body(conn)
 
-            request
-            |> decode_request
-            |> Codebot.Bot.query
-            |> IO.inspect
-            |> send_response(conn, 200)
-        rescue
-            err -> send_response(err, conn, 500)
-        end
+        request
+        |> decode_request
+        |> Slack.handle_message
+        |> Codebot.Bot.query
+        |> Slack.send_msg
+
+        send_response(conn, 200)
+    end
+
+    post "/slack/command" do
+        {:ok, request, _} = Plug.Conn.read_body(conn)
+
+        request
+        |> Slack.handle_command
+
+        send_response(conn, 200)
     end
 
     match _ do
@@ -49,23 +49,19 @@ defmodule Codebot.Web.Router do
 
     defp decode_request(request) do
         case JSON.decode(request) do
-            {:ok, %{"message" => message}} -> message
+            {:ok, body} -> body
             _ -> raise "Could not decode the request body"
         end
     end
 
-
-    defp send_response(resp, conn, 200) do
-        send_resp(
-            conn,
-            200,
-            Codebot.Web.Response.encode(resp)
-        )
+    defp send_response(conn, 200) do
+        send_resp(conn, 200, [])
     end
 
-    defp send_response(err, conn, 500) do
-        IO.inspect err
-        Logger.error("Something bad happened")
-        send_resp(conn, 500, "Server error")
+    def encode_response(response) when is_map(response) do
+        case JSON.encode(response) do
+            {:ok, body} -> body
+            _ -> raise "Could not encode the response"
+        end
     end
 end
