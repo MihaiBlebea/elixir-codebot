@@ -31,7 +31,7 @@ defmodule Codebot.MixProject do
             {:plug, "~> 1.7"},
             {:cors_plug, "~> 1.2"},
             {:httpoison, "~> 1.6", override: true},
-            {:floki, "~> 0.29.0"},
+            # {:floki, "~> 0.29.0"},
             {:json, "~> 1.2"},
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
             {:mongodb_driver, "~> 0.5"},

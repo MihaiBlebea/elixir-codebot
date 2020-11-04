@@ -1,13 +1,49 @@
-FROM elixir:latest
+# Ref https://akoutmos.com/post/multipart-docker-and-elixir-1.9-releases/
+FROM elixir:latest AS app_builder
 
-WORKDIR /codebot
+ENV MIX_ENV=prod \
+    TEST=1 \
+    LANG=C.UTF-8
 
-COPY . .
+# Install hex and rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
 
-RUN mix local.hex --force
+# Create the application build directory
+RUN mkdir /app
+WORKDIR /app
 
-RUN export MIX_ENV=prod && \
-    mix deps.get
+# Copy over all the necessary application files and directories
+COPY config ./config
+COPY lib ./lib
+COPY web ./web
+COPY mix.exs .
+COPY mix.lock .
 
-CMD ["mix", "run", "--no-halt"]
+# Fetch the application dependencies and build the application
+RUN mix deps.get
+RUN mix deps.compile
+RUN mix release
 
+
+# ---- Application Stage ----
+FROM ubuntu AS app
+
+ENV LANG=C.UTF-8
+
+# Install openssl
+RUN apt-get update && apt-get install -y openssl
+
+# Copy over the build artifact from the previous step and create a non root user
+RUN useradd --create-home app
+WORKDIR /home/app
+COPY --from=app_builder /app/_build .
+RUN chown -R app: ./prod
+USER app
+
+RUN cd ./prod/rel && ls
+
+EXPOSE 3000
+
+# Run the Phoenix app
+CMD ["./prod/rel/codebot/bin/codebot", "start"]
