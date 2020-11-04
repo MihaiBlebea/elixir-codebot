@@ -3,7 +3,10 @@ defmodule Codebot do
 
     @spec start(any, any) :: {:error, any} | {:ok, pid}
     def start(_type, _args) do
-        port = Application.get_env(:codebot, :port)
+        port =
+            Application.get_env(:codebot, :port)
+            |> String.to_integer()
+
         IO.puts "Application starting on port #{ to_string(port) }..."
 
         children = [

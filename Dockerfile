@@ -30,6 +30,9 @@ RUN mix release
 FROM ubuntu AS app
 
 ENV LANG=C.UTF-8
+ENV SLACK_TOKEN=${SLACK_TOKEN}
+ENV WITAI_TOKEN=${WITAI_TOKEN}
+ENV HTTP_PORT=${HTTP_PORT}
 
 # Install openssl
 RUN apt-get update && apt-get install -y openssl
@@ -43,7 +46,7 @@ USER app
 
 RUN cd ./prod/rel && ls
 
-EXPOSE 3000
+EXPOSE ${HTTP_PORT}
 
 # Run the Phoenix app
 CMD ["./prod/rel/codebot/bin/codebot", "start"]
