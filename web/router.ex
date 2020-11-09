@@ -25,13 +25,12 @@ defmodule Codebot.Web.Router do
     post "/slack" do
         {:ok, request, _} = Plug.Conn.read_body(conn)
 
-        request
-        |> JSON.decode!
-        |> handleSlackMessage conn
-        |> Codebot.Bot.query
-        |> Slack.send_msg
+        resp =
+            request
+            |> JSON.decode!
+            |> handleSlackMessage
 
-        send_resp(conn, 200, [])
+        send_resp(conn, 200, resp)
     end
 
     post "/slack/command" do
@@ -47,11 +46,16 @@ defmodule Codebot.Web.Router do
         send_resp(conn, 404, "Route not found")
     end
 
-    defp handleSlackMessage(%{"challenge" => challenge}, conn) do
-        send_resp(conn, 200, challenge)
+    defp handleSlackMessage(%{"challenge" => _challenge} = body) do
+        Slack.handle_message(body)
     end
 
-    defp handleSlackMessage(%{"event" => _event} = body, _conn) do
-        Slack.handle_message(body)
+    defp handleSlackMessage(%{"event" => _event} = body) do
+        body
+        |> Slack.handle_message
+        |> Codebot.Bot.query
+        |> Slack.send_msg
+
+        []
     end
 end
