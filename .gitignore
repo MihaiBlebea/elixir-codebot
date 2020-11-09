@@ -29,3 +29,5 @@ rel
 .env
 
 .elixir_ls
+
+Makefile

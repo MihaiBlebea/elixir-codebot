@@ -42,6 +42,21 @@ defmodule Codebot.Web.Router do
         send_resp(conn, 200, [])
     end
 
+    post "/slack/interactive" do
+        {:ok, request, _} = Plug.Conn.read_body(conn)
+
+        content =
+            request
+            |> String.replace("payload=", "")
+            |> URI.decode
+            |> JSON.decode!
+            |> IO.inspect
+
+        File.write!("./store/test.json", JSON.encode!(content))
+
+        send_resp(conn, 200, [])
+    end
+
     match _ do
         send_resp(conn, 404, "Route not found")
     end

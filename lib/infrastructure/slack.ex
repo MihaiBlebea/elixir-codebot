@@ -26,7 +26,6 @@ defmodule Codebot.Adapter.Slack do
 
     def handle_message(%{"event" => event}) do
         %{"text" => text, "type" => type} = event
-        IO.inspect event
         case type do
             ev_type when ev_type in ["message", "app_mention"] ->
                 text
@@ -63,5 +62,19 @@ defmodule Codebot.Adapter.Slack do
 
     defp get_slack_token() do
         System.get_env("SLACK_TOKEN")
+    end
+
+    def send_block() do
+        payload =
+            "./store/task_ui_block.json"
+            |> File.read!
+            |> JSON.decode!
+            |> JSON.encode!
+
+        url = "#{ @base_url }/#{ get_slack_token() }"
+
+        {:ok, resp} = HTTPoison.post(url, payload, get_default_headers())
+
+        IO.inspect resp
     end
 end
