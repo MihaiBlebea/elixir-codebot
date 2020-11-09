@@ -8,8 +8,6 @@ defmodule Codebot do
             |> String.to_integer()
 
         IO.puts "Application starting on port #{ to_string(port) }..."
-        IO.puts "WITAI token = #{ Application.get_env(:witai, :token) }"
-        IO.puts "WITAI token = #{ System.get_env("WITAI_TOKEN") }"
 
         children = [
             {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},

@@ -13,7 +13,7 @@ config :codebot,
     mongo_db: "codebot-v1",
     nlp_module: Witai
 
-config :witai, token: System.get_env("WITAI_TOKEN")
+config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
 
 config :codebot, Worker,
     jobs: [
