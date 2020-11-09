@@ -19,11 +19,6 @@ defmodule Codebot.Adapter.Slack do
         end
     end
 
-    @spec handle_message(map) :: binary
-    def handle_message(%{"challenge" => chanllenge}) do
-        chanllenge
-    end
-
     def handle_message(%{"event" => event}) do
         %{"text" => text, "type" => type} = event
         IO.inspect event
