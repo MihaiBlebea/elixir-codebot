@@ -1,6 +1,4 @@
 defmodule Codebot.Domain.Intent.CreateTaskIntent do
-    # @behaviour Codebot.Domain.Intent.IExecuteIntent
-
     @intent "create_task"
 
     @entities []

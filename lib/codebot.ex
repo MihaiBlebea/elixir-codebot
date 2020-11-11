@@ -12,7 +12,14 @@ defmodule Codebot do
         children = [
             {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},
             Codebot.Domain.Worker,
-            {Registry, [keys: :unique, name: :context_registry]}
+            {Registry, [keys: :unique, name: :context_registry]},
+            # {Codebot.Domain.Intent, [
+            #     {:hello, Codebot.Domain.Intent.HelloIntent}
+            # ]},
+            %{
+                id: Codebot.Domain.Intent,
+                start: {Codebot.Domain.Intent, :start_link, [Application.get_env(:codebot, :intents)]}
+            }
         ]
 
         Supervisor.start_link(children, strategy: :one_for_one)

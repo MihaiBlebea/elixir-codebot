@@ -6,12 +6,17 @@ config :mongodb_driver,
     host: "localhost"
 
 config :codebot,
-    # port: System.get_env("HTTP_PORT"),
     port: "8080",
     slack_token: System.get_env("SLACK_TOKEN"),
     mongo_url: "mongodb://localhost:27015/",
     mongo_db: "codebot-v1",
-    nlp_module: Witai
+    nlp_module: Witai,
+    intents: [
+        {:hello, Codebot.Domain.Intent.HelloIntent},
+        {:bye, Codebot.Domain.Intent.ByeIntent},
+        {:noreply, Codebot.Domain.Intent.NoreplyIntent},
+        {:create_task, Codebot.Domain.Intent.CreateTaskIntent}
+    ]
 
 config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
 

@@ -1,13 +1,9 @@
 defmodule Codebot.Domain.Intent do
+    use Agent
 
-    alias Codebot.Domain.Intent.HelloIntent
+    @agent_name :intent_agent
 
-    alias Codebot.Domain.Intent.ByeIntent
-
-    alias Codebot.Domain.Intent.NoreplyIntent
-
-    alias Codebot.Domain.Intent.CreateTaskIntent
-
+    @spec __using__(any) :: any
     defmacro __using__(args) do
         quote do
             @behaviour Codebot.Domain.Intent.IExecuteIntent
@@ -101,12 +97,25 @@ defmodule Codebot.Domain.Intent do
         end
     end
 
-    @spec pick({:hello, any}) :: binary
-    def pick({:noreply, _params }), do: NoreplyIntent.execute(%{})
+    @spec start_link(list) :: {:error, any} | {:ok, pid}
+    def start_link(intents) do
+        Agent.start_link(fn ()-> intents end, [name: @agent_name])
+    end
 
-    def pick({:hello, _params }), do: HelloIntent.execute(%{})
+    @spec lookup(atom | pid, atom) :: any
+    def lookup(pid, intent) do
+        Agent.get(pid, fn (state)->
+            Enum.filter(state, fn (itnt)->
+                {atom, _module} = itnt
+                atom === intent
+            end) |> Enum.at(0, nil)
+        end)
+    end
 
-    def pick({:bye, _params }), do: ByeIntent.execute(%{})
+    @spec pick({atom, map}) :: any
+    def pick({intent, props}) do
+        {_intent, module} = lookup(@agent_name, intent)
 
-    def pick({:create_task, params}), do: CreateTaskIntent.execute(params)
+        module.execute(props)
+    end
 end
