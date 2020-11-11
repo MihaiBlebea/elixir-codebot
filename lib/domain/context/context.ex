@@ -12,11 +12,21 @@ defmodule Codebot.Domain.Context do
         end
     end
 
-    @spec lookup(binary) :: pid
+    @spec lookup(binary) :: pid | nil
     def lookup(context_id) do
-        [{pid, nil}] = Registry.lookup(:context_registry, context_id)
+        Registry.lookup(:context_registry, context_id) |> Enum.at(0, nil) |> extract_pid
+    end
 
-        pid
+    defp extract_pid({intent, _props}), do: intent
+
+    defp extract_pid(nil), do: nil
+
+    @spec exists?(binary) :: boolean
+    def exists?(context_id) do
+        case lookup(context_id) do
+            nil -> false
+            _pid -> true
+        end
     end
 
     @spec get(binary, binary | atom) :: any
@@ -42,5 +52,16 @@ defmodule Codebot.Domain.Context do
     def del(context_id, key) do
         pid = lookup(context_id)
         Agent.update(pid, fn (state)-> Map.delete(state, key) end)
+    end
+
+    @spec update_intent(binary, any) :: :fail | :ok | :nochange
+    def update_intent(context_id, intent) do
+        case get(context_id, :intent) == intent do
+            true -> :nochange
+            false -> case put(context_id, :intent, intent) do
+                :ok -> put(context_id, :props, nil)
+                :fail -> :fail
+            end
+        end
     end
 end
