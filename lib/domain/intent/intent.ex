@@ -102,9 +102,9 @@ defmodule Codebot.Domain.Intent do
         Agent.start_link(fn ()-> intents end, [name: @agent_name])
     end
 
-    @spec lookup(atom | pid, atom) :: any
-    def lookup(pid, intent) do
-        Agent.get(pid, fn (state)->
+    @spec lookup(atom) :: any
+    def lookup(intent) do
+        Agent.get(@agent_name, fn (state)->
             Enum.filter(state, fn (itnt)->
                 {atom, _module} = itnt
                 atom === intent
@@ -114,8 +114,26 @@ defmodule Codebot.Domain.Intent do
 
     @spec pick({atom, map}) :: any
     def pick({intent, props}) do
-        {_intent, module} = lookup(@agent_name, intent)
+        {_intent, module} = lookup(intent)
 
         module.execute(props)
+    end
+
+    @spec deploy_all :: any
+    def deploy_all() do
+        Agent.get(@agent_name, fn (state)-> state end)
+        |> Enum.map(fn (intent)->
+            {_atom, module} = intent
+            module.deploy()
+        end)
+    end
+
+    @spec destroy_all :: any
+    def destroy_all() do
+        Agent.get(@agent_name, fn (state)-> state end)
+        |> Enum.map(fn (intent)->
+            {_atom, module} = intent
+            module.destroy()
+        end)
     end
 end
