@@ -3,91 +3,32 @@ defmodule ContextTest do
 
     alias Codebot.Domain.Context
 
-    setup do
-        pid = Context.start_link()
-        {:ok, context_pid: pid}
+    test "can create a context with a custom context id" do
+        pid = Context.start_link("serban")
+        assert is_pid(pid) == true
     end
 
-    test "can start a new context with random id", %{context_pid: pid} do
-        id = Context.getId(pid)
-        assert is_binary(id) == true
-        refute id == ""
+    test "will return the same context if trying to create a context wth the same context id" do
+
     end
 
-    test "can start context with unique id" do
-        table =
-            1..1000
-            |> Enum.map(fn (_index) ->
-                Task.async(fn ->
-                    pid = Context.start_link()
-                    Context.getId(pid)
-                end)
-            end)
-            |> Enum.map(fn (t)->
-                Task.await(t)
-            end)
-            |> Enum.uniq
+    test "can not create a context with empty string as context id" do
 
-        assert length(table) == 1000
     end
 
-    test "can set and retrieve a context intent", %{context_pid: pid} do
-        Context.put(pid, :intent, :hello)
+    test "can not create a context with an integer as context id" do
 
-        assert Context.get(pid, :intent) == :hello
     end
 
-    test "can not set other keys in context", %{context_pid: pid} do
-        Context.put(pid, :foo, :bar)
+    test "can add and fetch an intent to an existing context" do
 
-        refute Context.get(pid, :foo) == :bar
-        assert Context.put(pid, :foo, :bar) == :fail
     end
 
-    test "can add props to the context as map", %{context_pid: pid} do
-        Context.put(pid, :props, %{"name" => "Mihai", "job" => "developer"})
-        props = Context.get(pid, :props)
+    test "can add and fetch props to an existing context" do
 
-        assert Map.fetch!(props, "name") == "Mihai"
-        assert Map.fetch!(props, "job") == "developer"
     end
 
-    test "can not set props as anything other then map", %{context_pid: pid} do
-        res = Context.put(pid, :props, "Mihai")
-        props = Context.get(pid, :props)
+    test "will delete the existing props once the intent is changed" do
 
-        refute props == "Mihai"
-        assert props == nil
-        assert res == :fail
-    end
-
-    test "can update intent", %{context_pid: pid} do
-        Context.put(pid, :intent, :foo)
-        Context.put(pid, :intent, :bar)
-        intent = Context.get(pid, :intent)
-
-        assert intent == :bar
-    end
-
-    test "can update props", %{context_pid: pid} do
-        Context.put(pid, :props, %{"name" => "Mihai"})
-        Context.put(pid, :props, %{"name" => "Serban"})
-        props = Context.get(pid, :props)
-
-        assert Map.fetch!(props, "name") == "Serban"
-    end
-
-    test "can delete an intent", %{context_pid: pid} do
-        Context.put(pid, :intent, :foo)
-        Context.del(pid, :intent)
-
-        assert Context.get(pid, :intent) == nil
-    end
-
-    test "can delete a all props", %{context_pid: pid} do
-        Context.put(pid, :props, %{"name" => "Mihai"})
-        Context.del(pid, :props)
-
-        assert Context.get(pid, :props) == nil
     end
 end
