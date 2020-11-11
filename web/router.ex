@@ -28,6 +28,7 @@ defmodule Codebot.Web.Router do
         resp =
             request
             |> JSON.decode!
+            # |> IO.inspect
             |> handleSlackMessage
 
         send_resp(conn, 200, resp)
@@ -50,7 +51,7 @@ defmodule Codebot.Web.Router do
             |> String.replace("payload=", "")
             |> URI.decode
             |> JSON.decode!
-            |> IO.inspect
+            # |> IO.inspect
 
         File.write!("./store/test.json", JSON.encode!(content))
 
@@ -65,10 +66,12 @@ defmodule Codebot.Web.Router do
         Slack.handle_message(body)
     end
 
-    defp handleSlackMessage(%{"event" => _event} = body) do
+    defp handleSlackMessage(%{"event" => event} = body) do
+        %{"user" => user_id} = event
+
         body
         |> Slack.handle_message
-        |> Codebot.Bot.query
+        |> Codebot.Bot.query user_id
         |> Slack.send_msg
 
         []

@@ -11,7 +11,8 @@ defmodule Codebot do
 
         children = [
             {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},
-            Codebot.Domain.Worker
+            Codebot.Domain.Worker,
+            {Registry, [keys: :unique, name: :context_registry]}
         ]
 
         Supervisor.start_link(children, strategy: :one_for_one)

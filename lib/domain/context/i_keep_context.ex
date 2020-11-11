@@ -1,9 +1,7 @@
 defmodule Codebot.Domain.Context.IKeepContext do
-    @callback get(atom | pid, binary | atom) :: any
+    @callback get(binary, binary | atom) :: any
 
-    @callback getId(atom | pid) :: binary
+    @callback put(binary, binary | atom, any) :: :ok | :fail
 
-    @callback put(atom | pid, binary | atom, any) :: :ok | :fail
-
-    @callback del(pid | atom, binary) :: :ok
+    @callback del(binary, binary) :: :ok
 end

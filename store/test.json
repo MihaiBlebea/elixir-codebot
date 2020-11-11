@@ -1,1 +1,117 @@
-{"actions":[{"action_id":"actionId-1","action_ts":"1604963285.938980","block_id":"0G2N/","selected_options":[{"description":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"text":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"value":"value-0"}],"type":"checkboxes"}],"api_app_id":"A01DPC0329Z","channel":{"id":"C01ECUVD5U0","name":"general"},"container":{"channel_id":"C01ECUVD5U0","is_ephemeral":false,"message_ts":"1604963273.007900","type":"message"},"message":{"blocks":[{"block_id":"wdd5","text":{"emoji":true,"text":"Here+are+your+tasks+for+the+day","type":"plain_text"},"type":"section"},{"block_id":"0G2N/","elements":[{"action_id":"actionId-1","options":[{"description":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"text":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"value":"value-0"}],"type":"checkboxes"}],"type":"actions"}],"bot_id":"B01ED2FCHJL","subtype":"bot_message","text":"This+content+can't+be+displayed.","ts":"1604963273.007900","type":"message"},"response_url":"https://hooks.slack.com/actions/T01ECUVCAMN/1488727284866/CeBGvnzgqbJcfvVs03RL86En","state":{"values":{"0G2N/":{"actionId-1":{"selected_options":[{"description":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"text":{"text":"*this+is+mrkdwn+text*","type":"mrkdwn","verbatim":false},"value":"value-0"}],"type":"checkboxes"}}}},"team":{"domain":"mihaiblebea","id":"T01ECUVCAMN"},"token":"6YqIEs1vrPSp22zaIWn3ZdvG","trigger_id":"1512569727840.1488981418736.831088280e190fdffb8806f670984352","type":"block_actions","user":{"id":"U01DPA5NBK5","name":"mihaiserban.blebea","team_id":"T01ECUVCAMN","username":"mihaiserban.blebea"}}
+{
+    "actions": [
+        {
+            "action_id": "actionId-1",
+            "action_ts": "1604963285.938980",
+            "block_id": "0G2N/",
+            "selected_options": [
+                {
+                    "description": {
+                        "text": "*this+is+mrkdwn+text*",
+                        "type": "mrkdwn",
+                        "verbatim": false
+                    },
+                    "text": {
+                        "text": "*this+is+mrkdwn+text*",
+                        "type": "mrkdwn",
+                        "verbatim": false
+                    },
+                    "value": "value-0"
+                }
+            ],
+            "type": "checkboxes"
+        }
+    ],
+    "api_app_id": "A01DPC0329Z",
+    "channel": {
+        "id": "C01ECUVD5U0",
+        "name": "general"
+    },
+    "container": {
+        "channel_id": "C01ECUVD5U0",
+        "is_ephemeral": false,
+        "message_ts": "1604963273.007900",
+        "type": "message"
+    },
+    "message": {
+        "blocks": [
+            {
+                "block_id": "wdd5",
+                "text": {
+                    "emoji": true,
+                    "text": "Here+are+your+tasks+for+the+day",
+                    "type": "plain_text"
+                },
+                "type": "section"
+            },
+            {
+                "block_id": "0G2N/",
+                "elements": [
+                    {
+                        "action_id": "actionId-1",
+                        "options": [
+                            {
+                                "description": {
+                                    "text": "*this+is+mrkdwn+text*",
+                                    "type": "mrkdwn",
+                                    "verbatim": false
+                                },
+                                "text": {
+                                    "text": "*this+is+mrkdwn+text*",
+                                    "type": "mrkdwn",
+                                    "verbatim": false
+                                },
+                                "value": "value-0"
+                            }
+                        ],
+                        "type": "checkboxes"
+                    }
+                ],
+                "type": "actions"
+            }
+        ],
+        "bot_id": "B01ED2FCHJL",
+        "subtype": "bot_message",
+        "text": "This+content+can't+be+displayed.",
+        "ts": "1604963273.007900",
+        "type": "message"
+    },
+    "response_url": "https://hooks.slack.com/actions/T01ECUVCAMN/1488727284866/CeBGvnzgqbJcfvVs03RL86En",
+    "state": {
+        "values": {
+            "0G2N/": {
+                "actionId-1": {
+                    "selected_options": [
+                        {
+                            "description": {
+                                "text": "*this+is+mrkdwn+text*",
+                                "type": "mrkdwn",
+                                "verbatim": false
+                            },
+                            "text": {
+                                "text": "*this+is+mrkdwn+text*",
+                                "type": "mrkdwn",
+                                "verbatim": false
+                            },
+                            "value": "value-0"
+                        }
+                    ],
+                    "type": "checkboxes"
+                }
+            }
+        }
+    },
+    "team": {
+        "domain": "mihaiblebea",
+        "id": "T01ECUVCAMN"
+    },
+    "token": "6YqIEs1vrPSp22zaIWn3ZdvG",
+    "trigger_id": "1512569727840.1488981418736.831088280e190fdffb8806f670984352",
+    "type": "block_actions",
+    "user": {
+        "id": "U01DPA5NBK5",
+        "name": "mihaiserban.blebea",
+        "team_id": "T01ECUVCAMN",
+        "username": "mihaiserban.blebea"
+    }
+}

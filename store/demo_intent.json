@@ -1,5 +1,5 @@
 {
-    "intent": "buy_milk",
+    "intent": "create_task",
     "entities": [
         {
             "name":"milk",
