@@ -1,5 +1,48 @@
 defmodule Codebot.Domain.Intent.HelloIntent do
-    @behaviour Codebot.Domain.Intent.IExecuteIntent
+    @intent "hello"
+
+    @entities []
+
+    @utterances [
+        %{
+            "text" => "Hey",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        },
+        %{
+            "text" => "Hey hey",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        },
+        %{
+            "text" => "Hello",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        },
+        %{
+            "text" => "Good morning",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        },
+        %{
+            "text" => "Morning",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        },
+        %{
+            "text" => "How are you?",
+            "intent" => @intent,
+            "entities" => @entities,
+            "traits" => []
+        }
+    ]
+
+    use Codebot.Domain.Intent, intent: %{"intent" => @intent, "entities" => @entities, "utterances" => @utterances}
 
     @spec execute(map) :: binary
     def execute(_params) do

@@ -16,7 +16,8 @@ defmodule Codebot do
             %{
                 id: Codebot.Domain.Intent,
                 start: {Codebot.Domain.Intent, :start_link, [Application.get_env(:codebot, :intents)]}
-            }
+            },
+            {MyXQL, username: "admin", password: "pass", hostname: "localhost", database: "codebot", name: :codebot_db}
         ]
 
         Supervisor.start_link(children, strategy: :one_for_one)

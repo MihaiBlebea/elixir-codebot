@@ -14,6 +14,7 @@ defmodule Codebot.Domain.Intent do
                 intent
                 |> deploy(:intent)
                 |> deploy(:entity)
+                |> build(:utterance)
                 |> deploy(:utterance)
             end
 
@@ -29,7 +30,6 @@ defmodule Codebot.Domain.Intent do
                 template
                 |> Map.fetch!("entities")
                 |> Enum.map(fn (entity)-> Witai.create_entity(entity) end)
-                |> IO.inspect
 
                 template
             end
@@ -51,12 +51,55 @@ defmodule Codebot.Domain.Intent do
                 Witai.create_intent(intent)
             end
 
+            defp build(template, :utterance) do
+                intent_name = Map.fetch!(template, "intent")
+                utterances =
+                    template
+                    |> Map.fetch!("utterances")
+                    |> Enum.map(fn (utterance)-> add_entity_missing_param(utterance) end)
+                    |> Enum.map(fn (utterance)-> Map.merge(utterance, %{"traits" => [], "intent" => intent_name}) end)
+
+                Map.put(template, "utterances", utterances)
+            end
+
+            defp entity_start_index(utterance, entity) when is_binary(utterance) and is_binary(entity) do
+                case String.split(utterance, entity, parts: 2) do
+                    [left, _] -> String.length(left)
+                    [_] -> nil
+                end
+            end
+
+            defp entity_end_index(utterance, entity) when is_binary(utterance) and is_binary(entity) do
+                case entity_start_index(utterance, entity) do
+                    nil -> nil
+                    start_index -> start_index + String.length(entity)
+                end
+            end
+
+            defp add_entity_missing_param(utterance) do
+                utterance_body = Map.fetch!(utterance, "text")
+                entities =
+                    Map.fetch!(utterance, "entities")
+                    |> Enum.map(fn (entity)->
+                        entity_body = Map.fetch!(entity, "body")
+                        Map.merge(entity, %{
+                            "start" => entity_start_index(utterance_body, entity_body),
+                            "end" => entity_end_index(utterance_body, entity_body),
+                            "entities" => []
+                        })
+                    end)
+
+                Map.put(utterance, "entities", entities)
+            end
+
+
             def drop() do
                 [intent: intent] = unquote(args)
 
                 intent
                 |> drop(:intent)
                 |> drop(:entity)
+                |> strip(:utterance)
                 |> drop(:utterance)
             end
 
@@ -72,7 +115,7 @@ defmodule Codebot.Domain.Intent do
                 template
                 |> Map.fetch!("entities")
                 |> Enum.map(fn (entity)-> Map.fetch!(entity, "name") |> Witai.delete_entity end)
-                |> IO.inspect
+                # |> IO.inspect
 
                 template
             end
@@ -80,9 +123,8 @@ defmodule Codebot.Domain.Intent do
             defp drop(template, :utterance) do
                 template
                 |> Map.fetch!("utterances")
-                |> Enum.map(fn (utterance)-> Map.fetch!(utterance, "text") end)
                 |> Witai.delete_utterances
-                |> IO.inspect
+                # |> IO.inspect
 
                 template
             end
@@ -93,6 +135,16 @@ defmodule Codebot.Domain.Intent do
 
             defp drop_intents(intent) when is_binary(intent) do
                 Witai.delete_intent(intent)
+            end
+
+            defp strip(template, :utterance) do
+                stripped =
+                    template
+                    |> Map.fetch!("utterances")
+                    |> Enum.map(fn (utterance)-> Map.drop(utterance, ["entities"]) end)
+                    # |> IO.inspect
+
+                Map.put(template, "utterances", stripped)
             end
         end
     end

@@ -15,7 +15,7 @@ defmodule Codebot.MixProject do
     # Run "mix help compile.app" to learn about applications.
     def application do
         [
-            extra_applications: [:logger, :mongodb_driver, :witai],
+            extra_applications: [:logger, :witai],
             mod: {Codebot, []}
         ]
     end
@@ -34,10 +34,9 @@ defmodule Codebot.MixProject do
             # {:floki, "~> 0.29.0"},
             {:json, "~> 1.2"},
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
-            {:mongodb_driver, "~> 0.5"},
-            {:uuid, "~> 1.1"},
             {:witai, "~> 0.1.1"},
-            {:quantum, "~> 3.0"}
+            {:quantum, "~> 3.0"},
+            {:myxql, "~> 0.4.0"}
         ]
     end
 end

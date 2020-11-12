@@ -71,7 +71,7 @@ defmodule Codebot.Web.Router do
 
         body
         |> Slack.handle_message
-        |> Codebot.Bot.query user_id
+        |> Codebot.Bot.query(user_id)
         |> Slack.send_msg
 
         []
