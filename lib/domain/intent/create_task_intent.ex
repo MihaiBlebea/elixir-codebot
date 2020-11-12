@@ -1,4 +1,7 @@
 defmodule Codebot.Domain.Intent.CreateTaskIntent do
+
+    alias Codebot.Adapter.TaskRepository
+
     @intent "create_task"
 
     @entities [
@@ -42,17 +45,15 @@ defmodule Codebot.Domain.Intent.CreateTaskIntent do
         }
     ]
 
-    use Codebot.Domain.Intent, intent: template()
+    use Codebot.Domain.Intent, intent: %{"intent" => @intent, "entities" => @entities, "utterances" => @utterances}
 
     @spec execute(map) :: binary
-    def execute(_params) do
-        task = %{"title" => "This is a new task", "description" => "This is a description", "done" => false}
-        Codebot.Adapter.TaskMock.store_task(task)
+    def execute(params) do
+        %{ "task_title" => task_title } = params
 
-        "New task was created"
-    end
-
-    defp template() do
-        %{"intent" => @intent, "entities" => @entities, "utterances" => @utterances}
+        case TaskRepository.add_task(%{"title" => task_title}) do
+            :fail -> "I tried to create this task but something went wrong"
+            _ -> "I have created the task for you"
+        end
     end
 end

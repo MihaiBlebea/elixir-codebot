@@ -56,7 +56,12 @@ defmodule Codebot.Domain.Intent do
                 utterances =
                     template
                     |> Map.fetch!("utterances")
-                    |> Enum.map(fn (utterance)-> add_entity_missing_param(utterance) end)
+                    |> Enum.map(fn (utterance)->
+                        case Map.has_key?(utterance, "entities") do
+                            true -> add_entity_missing_param(utterance)
+                            false -> Map.put(utterance, "entities", [])
+                        end
+                    end)
                     |> Enum.map(fn (utterance)-> Map.merge(utterance, %{"traits" => [], "intent" => intent_name}) end)
 
                 Map.put(template, "utterances", utterances)

@@ -1,4 +1,4 @@
-defmodule Codebot.TaskRepository do
+defmodule Codebot.Adapter.TaskRepository do
     # https://hexdocs.pm/myxql/readme.html
 
     @table_name "tasks"
@@ -42,10 +42,20 @@ defmodule Codebot.TaskRepository do
         add_task(%{"title" => title, "description" => nil})
     end
 
+    @spec find_today_tasks :: :fail | [map]
     def find_today_tasks() do
         MyXQL.query(
             @db_app,
             "SELECT * FROM #{ @table_name } WHERE DATE_FORMAT(created, '%Y-%m-%d') = CURRENT_DATE()"
+        ) |> cast
+    end
+
+    @spec find_by_id(integer) :: map | :fail
+    def find_by_id(id) do
+        MyXQL.query(
+            @db_app,
+            "SELECT * FROM #{ @table_name } WHERE id = ?",
+            [id]
         ) |> cast
     end
 
@@ -73,11 +83,27 @@ defmodule Codebot.TaskRepository do
         %MyXQL.Result{columns: columns, rows: rows} = result
         rows
         |> Enum.map(fn (row)->
-            Enum.zip(columns, row) |> Enum.into(%{})
+            Enum.zip(columns, row) |> Enum.into(%{}) |> cast_completed_boolean
         end)
+        |> cast_one?
     end
 
     defp cast({:error, _result}) do
         :fail
+    end
+
+    defp cast_one?(list) when is_list(list) do
+        case length(list) do
+            1 -> Enum.at(list, 0)
+            _ -> list
+        end
+    end
+
+    defp cast_completed_boolean(task) do
+        key = "completed"
+        case Map.fetch!(task, key) do
+            0 -> Map.put(task, key, false)
+            1 -> Map.put(task, key, true)
+        end
     end
 end

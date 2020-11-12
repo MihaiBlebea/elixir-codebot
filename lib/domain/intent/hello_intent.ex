@@ -5,40 +5,22 @@ defmodule Codebot.Domain.Intent.HelloIntent do
 
     @utterances [
         %{
-            "text" => "Hey",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "Hey"
         },
         %{
-            "text" => "Hey hey",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "Hey hey"
         },
         %{
-            "text" => "Hello",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "Hello"
         },
         %{
-            "text" => "Good morning",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "Good morning"
         },
         %{
-            "text" => "Morning",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "Morning"
         },
         %{
-            "text" => "How are you?",
-            "intent" => @intent,
-            "entities" => @entities,
-            "traits" => []
+            "text" => "How are you?"
         }
     ]
 

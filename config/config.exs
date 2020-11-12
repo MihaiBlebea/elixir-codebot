@@ -9,8 +9,9 @@ config :codebot,
     intents: [
         {:hello, Codebot.Domain.Intent.HelloIntent},
         {:bye, Codebot.Domain.Intent.ByeIntent},
-        {:noreply, Codebot.Domain.Intent.NoreplyIntent},
-        {:create_task, Codebot.Domain.Intent.CreateTaskIntent}
+        {:create_task, Codebot.Domain.Intent.CreateTaskIntent},
+        {:list_tasks, Codebot.Domain.Intent.ListTasksIntent},
+        {:complete_task, Codebot.Domain.Intent.CompleteTaskIntent}
     ]
 
 config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
