@@ -18,7 +18,8 @@ config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
 
 config :codebot, Worker,
     jobs: [
-        {"1,30 8-17 * * *", &Worker.tell_joke/0 }
+        {"1,30 8-17 * * *", &Worker.tell_joke/0 },
+        {"0 8-17/1 * * *", &Worker.list_tasks/0 }
     ]
 
 import_config "config.#{ Mix.env() }.exs"
