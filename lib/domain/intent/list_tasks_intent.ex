@@ -30,9 +30,10 @@ defmodule Codebot.Domain.Intent.ListTasksIntent do
     use Codebot.Domain.Intent, intent: %{"intent" => @intent, "entities" => @entities, "utterances" => @utterances}
 
     def execute(_params) do
-        tasks = TaskRepository.find_today_tasks()
-
-        ":arrow_down: Here are your tasks for today :arrow_down: \n\n #{ build_options(tasks) }"
+        case TaskRepository.find_today_tasks() do
+            :fail -> ":face_palm: Sorry I just had an issue with the database"
+            tasks -> ":arrow_down: Here are your tasks for today :arrow_down: \n\n #{ build_options(tasks) }"
+        end
     end
 
     def build_options(tasks, options \\ [], index \\ 0) do
