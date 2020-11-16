@@ -83,7 +83,7 @@ defmodule Codebot.Adapter.TaskRepository do
         %MyXQL.Result{columns: columns, rows: rows} = result
         rows
         |> Enum.map(fn (row)->
-            Enum.zip(columns, row) |> Enum.into(%{}) |> cast_completed_boolean
+            Enum.zip(columns, row) |> Enum.into(%{}) |> cast_boolean("completed")
         end)
         |> cast_one?
     end
@@ -99,11 +99,11 @@ defmodule Codebot.Adapter.TaskRepository do
         end
     end
 
-    defp cast_completed_boolean(task) do
-        key = "completed"
-        case Map.fetch!(task, key) do
+    defp cast_boolean(task, key) do
+        case Map.get(task, key, nil) do
             0 -> Map.put(task, key, false)
             1 -> Map.put(task, key, true)
+            nil -> task
         end
     end
 end
