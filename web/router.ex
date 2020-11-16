@@ -28,6 +28,7 @@ defmodule Codebot.Web.Router do
         resp =
             request
             |> JSON.decode!
+            # |> IO.inspect
             |> handleSlackMessage
 
         send_resp(conn, 200, resp)
@@ -42,6 +43,21 @@ defmodule Codebot.Web.Router do
         send_resp(conn, 200, [])
     end
 
+    post "/slack/interactive" do
+        {:ok, request, _} = Plug.Conn.read_body(conn)
+
+        content =
+            request
+            |> String.replace("payload=", "")
+            |> URI.decode
+            |> JSON.decode!
+            # |> IO.inspect
+
+        File.write!("./store/test.json", JSON.encode!(content))
+
+        send_resp(conn, 200, [])
+    end
+
     match _ do
         send_resp(conn, 404, "Route not found")
     end
@@ -50,10 +66,12 @@ defmodule Codebot.Web.Router do
         Slack.handle_message(body)
     end
 
-    defp handleSlackMessage(%{"event" => _event} = body) do
+    defp handleSlackMessage(%{"event" => event} = body) do
+        %{"user" => user_id} = event
+
         body
         |> Slack.handle_message
-        |> Codebot.Bot.query
+        |> Codebot.Bot.query(user_id)
         |> Slack.send_msg
 
         []

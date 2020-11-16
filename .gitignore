@@ -22,10 +22,12 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 codebot-*.tar
 
-mongodb-volume
+volume
 
 rel
 
 .env
 
 .elixir_ls
+
+Makefile

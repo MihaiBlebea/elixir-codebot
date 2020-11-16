@@ -1,0 +1,24 @@
+{
+    "intent": "create_task",
+    "entities" : [],
+    "utterances": [
+        {
+            "text": "I want to create a new task",
+            "intent": "create_task",
+            "entities": [],
+            "traits": []
+        },
+        {
+            "text": "Add this task",
+            "intent": "create_task",
+            "entities": [],
+            "traits": []
+        },
+        {
+            "text": "Store this task",
+            "intent": "create_task",
+            "entities": [],
+            "traits": []
+        }
+    ]
+}

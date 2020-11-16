@@ -1,19 +1,9 @@
 defmodule Codebot.Domain.Worker do
     use Quantum, otp_app: :codebot
 
-    alias Codebot.Adapter.TaskMock
+    alias Codebot.Domain.Intent.ListTasksIntent
 
     alias Codebot.Adapter.Slack
-
-    @spec fetch_task_list :: :ok
-    def fetch_task_list() do
-        TaskMock.list_tasks()
-        |> Enum.map(fn (task)-> Map.fetch!(task, "name") end)
-        |> Enum.join("\n")
-        |> IO.inspect
-        |> Slack.send_msg
-        # |> Enum.map(fn (task)-> Slack.send_msg(task) end)
-    end
 
     def tell_joke() do
         {:ok, %{body: body}} = HTTPoison.get("https://sv443.net/jokeapi/v2/joke/Any")
@@ -28,5 +18,12 @@ defmodule Codebot.Domain.Worker do
                 Slack.send_msg Map.fetch!(content, "joke")
             true -> nil
         end
+    end
+
+    @spec list_tasks :: nil
+    def list_tasks() do
+        ListTasksIntent.execute([]) |> Slack.send_msg
+
+        nil
     end
 end

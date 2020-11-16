@@ -1,5 +1,30 @@
 defmodule Codebot.Domain.Intent.ByeIntent do
-    @behaviour Codebot.Domain.Intent.IExecuteIntent
+    @intent "bye"
+
+    @entities []
+
+    @utterances [
+        %{
+            "text" => "Bye bye"
+        },
+        %{
+            "text" => "Bye"
+        },
+        %{
+            "text" => "See you later"
+        },
+        %{
+            "text" => "Nighr"
+        },
+        %{
+            "text" => "Laters"
+        },
+        %{
+            "text" => "Bye bot"
+        }
+    ]
+
+    use Codebot.Domain.Intent, intent: %{"intent" => @intent, "entities" => @entities, "utterances" => @utterances}
 
     @spec execute(map) :: binary
     def execute(_params) do
