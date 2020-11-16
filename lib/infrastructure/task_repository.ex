@@ -9,7 +9,7 @@ defmodule Codebot.Adapter.TaskRepository do
     def create_table() do
         MyXQL.query(
             @db_app,
-            "CREATE TABLE #{ @table_name } (
+            "CREATE TABLE IF NOT EXISTS #{ @table_name } (
                 id INT NOT NULL AUTO_INCREMENT,
                 title VARCHAR(255) NOT NULL,
                 description VARCHAR(255),

@@ -14,6 +14,14 @@ config :codebot,
         {:complete_task, Codebot.Domain.Intent.CompleteTaskIntent}
     ]
 
+config :broadcaster,
+    mysql_user: "root",
+    mysql_password: "root",
+    mysql_root: "root",
+    mysql_host: "srv-captain--platform-db-db",
+    mysql_port: 3306,
+    mysql_database: "codebot"
+
 config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
 
 config :codebot, Worker,

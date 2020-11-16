@@ -17,9 +17,25 @@ defmodule Codebot do
                 id: Codebot.Domain.Intent,
                 start: {Codebot.Domain.Intent, :start_link, [Application.get_env(:codebot, :intents)]}
             },
-            {MyXQL, username: "admin", password: "pass", hostname: "localhost", database: "codebot", name: :codebot_db}
+            {
+                MyXQL,
+                username: Application.get_env(:broadcaster, :mysql_user),
+                password: Application.get_env(:broadcaster, :mysql_password),
+                hostname: Application.get_env(:broadcaster, :mysql_host),
+                port: Application.get_env(:broadcaster, :mysql_port),
+                database: Application.get_env(:broadcaster, :mysql_database),
+                name: :codebot_db
+            }
         ]
 
-        Supervisor.start_link(children, strategy: :one_for_one)
+        supervisor = Supervisor.start_link(children, strategy: :one_for_one)
+
+        migrate_db()
+
+        supervisor
+    end
+
+    defp migrate_db() do
+        Codebot.Adapter.TaskRepository.create_table
     end
 end
