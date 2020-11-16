@@ -9,6 +9,8 @@ defmodule Codebot do
 
         IO.puts "Application starting on port #{ to_string(port) }..."
 
+        IO.inspect Application.get_all_env(:codebot)
+
         children = [
             {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},
             Codebot.Domain.Worker,
@@ -19,11 +21,11 @@ defmodule Codebot do
             },
             {
                 MyXQL,
-                username: Application.get_env(:broadcaster, :mysql_user),
-                password: Application.get_env(:broadcaster, :mysql_password),
-                hostname: Application.get_env(:broadcaster, :mysql_host),
-                port: Application.get_env(:broadcaster, :mysql_port),
-                database: Application.get_env(:broadcaster, :mysql_database),
+                username: Application.get_env(:codebot, :mysql_user),
+                password: Application.get_env(:codebot, :mysql_password),
+                hostname: Application.get_env(:codebot, :mysql_host),
+                port: Application.get_env(:codebot, :mysql_port),
+                database: Application.get_env(:codebot, :mysql_database),
                 name: :codebot_db
             }
         ]
