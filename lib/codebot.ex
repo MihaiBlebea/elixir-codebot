@@ -1,6 +1,8 @@
 defmodule Codebot do
     use Application
 
+    require Logger
+
     @spec start(any, any) :: {:error, any} | {:ok, pid}
     def start(_type, _args) do
         port =
@@ -9,7 +11,9 @@ defmodule Codebot do
 
         IO.puts "Application starting on port #{ to_string(port) }..."
 
-        IO.inspect Application.get_all_env(:codebot)
+        Application.get_all_env(:codebot)
+        |> inspect
+        |> Logger.debug
 
         children = [
             {Plug.Cowboy, scheme: :http, plug: Codebot.Web.Router, options: [port: port]},

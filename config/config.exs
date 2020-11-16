@@ -14,7 +14,7 @@ config :codebot,
         {:complete_task, Codebot.Domain.Intent.CompleteTaskIntent}
     ]
 
-config :broadcaster,
+config :codebot,
     mysql_user: "root",
     mysql_password: "root",
     mysql_root: "root",

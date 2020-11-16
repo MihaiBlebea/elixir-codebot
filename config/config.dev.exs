@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :broadcaster,
+config :codebot,
     mysql_user: "root",
     mysql_password: "root",
     mysql_root: "root",
