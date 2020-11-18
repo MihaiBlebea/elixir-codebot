@@ -1,5 +1,6 @@
 defmodule Codebot.Web.Router do
     use Plug.Router
+
     require Logger
 
     alias Codebot.Adapter.Slack
@@ -75,9 +76,17 @@ defmodule Codebot.Web.Router do
 
         body
         |> Slack.handle_message
+        |> log
         |> Codebot.Bot.query(user_id)
+        |> log
         |> Slack.send_msg(channel)
 
         []
+    end
+
+    defp log(body) do
+        body |> inspect |> Logger.debug
+
+        body
     end
 end
