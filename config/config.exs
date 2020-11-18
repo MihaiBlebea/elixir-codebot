@@ -4,7 +4,7 @@ alias Codebot.Domain.Worker
 
 config :codebot,
     port: "8080",
-    slack_token: System.get_env("SLACK_TOKEN"),
+    # slack_token: "xoxb-1488981418736-1474758082119-iFuy2LcNDFH3Ik6mByH2diTN",
     nlp_module: Witai,
     intents: [
         {:hello, Codebot.Domain.Intent.HelloIntent},
@@ -24,10 +24,10 @@ config :codebot,
 
 config :witai, token: "RSO37RX6O2NT3NCQWYF5CET4IJENJFCO"
 
-config :codebot, Worker,
-    jobs: [
-        {"1,30 8-17 * * *", &Worker.tell_joke/0 },
-        {"0 8-17/1 * * *", &Worker.list_tasks/0 }
-    ]
+# config :codebot, Worker,
+#     jobs: [
+#         {"1,30 8-17 * * *", &Worker.tell_joke/0 },
+#         {"0 8-17/1 * * *", &Worker.list_tasks/0 }
+#     ]
 
 import_config "config.#{ Mix.env() }.exs"

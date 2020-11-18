@@ -32,7 +32,11 @@ defmodule Codebot.Domain.Intent.ListTasksIntent do
     def execute(_params) do
         case TaskRepository.find_today_tasks() do
             :fail -> ":face_palm: Sorry I just had an issue with the database"
-            tasks -> ":arrow_down: Here are your tasks for today :arrow_down: \n\n #{ build_options(tasks) }"
+            tasks ->
+                case length(tasks) > 0 do
+                    false -> ":man-shrugging: no tasks for today"
+                    true -> ":arrow_down: Here are your tasks for today :arrow_down: \n\n #{ build_options(tasks) }"
+                end
         end
     end
 

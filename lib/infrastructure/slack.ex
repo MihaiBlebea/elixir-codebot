@@ -1,12 +1,34 @@
 defmodule Codebot.Adapter.Slack do
     require Logger
 
-    @base_url "https://hooks.slack.com/services"
+    @base_url "https://slack.com/api"
+
+    @hook_url "https://hooks.slack.com/services"
+
+    @app_token System.get_env("SLACK_APP_TOKEN")
+
+    @bot_token System.get_env("SLACK_BOT_TOKEN")
+
+    @spec send_msg(binary, binary) :: :ok
+    def send_msg(text, channel) when is_binary(text) do
+        req_body = JSON.encode!(%{"text" => text, "channel" => channel})
+        url = "#{ @base_url }/chat.postMessage"
+
+        {:ok, resp} = HTTPoison.post(url, req_body, get_default_headers())
+        code = Map.fetch!(resp, :status_code)
+
+        case code do
+            200 -> :ok
+            _ ->
+                Logger.error("Request failed with code " <> to_string(code))
+                raise "Request failed with code " <> to_string(code)
+        end
+    end
 
     @spec send_msg(binary) :: :ok
     def send_msg(text) when is_binary(text) do
-        req_body = JSON.encode!(%{"text" => text, "channel" => "D01E6NKJWPQ"})
-        url = "#{ @base_url }/#{ get_slack_token() }"
+        req_body = JSON.encode!(%{"text" => text})
+        url = "#{ @hook_url }/#{ @bot_token }"
 
         {:ok, resp} = HTTPoison.post(url, req_body, get_default_headers())
         code = Map.fetch!(resp, :status_code)
@@ -53,28 +75,24 @@ defmodule Codebot.Adapter.Slack do
     end
 
     defp get_default_headers() do
-        ["Authorization": "Bearer #{ get_slack_token() }", "Content-Type": "application/json"]
+        ["Authorization": "Bearer #{ @app_token }", "Content-Type": "application/json"]
     end
 
     defp strip_mentions(message) do
         Regex.replace(~r/<@[A-Z0-9]*>/, message, "")
     end
 
-    defp get_slack_token() do
-        System.get_env("SLACK_TOKEN")
-    end
+    # def send_block() do
+    #     payload =
+    #         "./store/task_ui_block.json"
+    #         |> File.read!
+    #         |> JSON.decode!
+    #         |> JSON.encode!
 
-    def send_block() do
-        payload =
-            "./store/task_ui_block.json"
-            |> File.read!
-            |> JSON.decode!
-            |> JSON.encode!
+    #     url = "#{ @base_url }/#{ get_slack_token() }"
 
-        url = "#{ @base_url }/#{ get_slack_token() }"
+    #     {:ok, resp} = HTTPoison.post(url, payload, get_default_headers())
 
-        {:ok, resp} = HTTPoison.post(url, payload, get_default_headers())
-
-        IO.inspect resp
-    end
+    #     IO.inspect resp
+    # end
 end

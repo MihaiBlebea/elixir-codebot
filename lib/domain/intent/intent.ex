@@ -169,6 +169,11 @@ defmodule Codebot.Domain.Intent do
         end)
     end
 
+    @spec pick({:no_intent, map}) :: any
+    def pick({:no_intent, props}) do
+        "I did not understand that last one :hear_no_evil:..."
+    end
+
     @spec pick({atom, map}) :: any
     def pick({intent, props}) do
         {_intent, module} = lookup(intent)

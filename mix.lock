@@ -31,5 +31,5 @@
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.6", "cf344f5692c82d2cd7554f5ec8fd961548d4fd09e7d22f5b62482e5aeaebd4b0", [:make, :mix, :rebar3], [], "hexpm", "bdb0d2471f453c88ff3908e7686f86f9be327d065cc1ec16fa4540197ea04680"},
   "telemetry": {:hex, :telemetry, "0.4.2", "2808c992455e08d6177322f14d3bdb6b625fbcfd233a73505870d8738a2f4599", [:rebar3], [], "hexpm", "2d1419bd9dda6a206d7b5852179511722e2b18812310d304620c7bd92a13fcef"},
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.5.0", "8516502659002cec19e244ebd90d312183064be95025a319a6c7e89f4bccd65b", [:rebar3], [], "hexpm", "d48d002e15f5cc105a696cf2f1bbb3fc72b4b770a184d8420c8db20da2674b38"},
-  "witai": {:hex, :witai, "0.1.1", "57cf6c4ecea4f68fb8cc9e5463dfc27a2af99dd3ba03004dd6d24e46cd146469", [:mix], [{:httpoison, "~> 1.6", [hex: :httpoison, repo: "hexpm", optional: false]}, {:json, "~> 1.2", [hex: :json, repo: "hexpm", optional: false]}], "hexpm", "b0a664b7cc0ac1ecf4e31cac9ce5f043631f359a5626576061c7d47d72f94072"},
+  "witai": {:hex, :witai, "0.1.2", "0114592915f6d0dcdce74cb536eda0c5d040a085ff5af7a69fb0aeec19c4b889", [:mix], [{:httpoison, "~> 1.6", [hex: :httpoison, repo: "hexpm", optional: false]}, {:json, "~> 1.2", [hex: :json, repo: "hexpm", optional: false]}], "hexpm", "f802787b2cce3fc659df4100fea98d1639787c57b1fd5c673a4b9bd83d07fb76"},
 }

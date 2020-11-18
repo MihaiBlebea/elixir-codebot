@@ -34,7 +34,7 @@ defmodule Codebot.MixProject do
             # {:floki, "~> 0.29.0"},
             {:json, "~> 1.2"},
             {:ex_doc, "~> 0.22", only: :dev, runtime: false},
-            {:witai, "~> 0.1.1"},
+            {:witai, "0.1.2"},
             {:quantum, "~> 3.0"},
             {:myxql, "~> 0.4.0"}
         ]
