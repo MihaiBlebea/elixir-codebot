@@ -4,7 +4,6 @@ alias Codebot.Domain.Worker
 
 config :codebot,
     port: "8080",
-    # slack_token: "xoxb-1488981418736-1474758082119-iFuy2LcNDFH3Ik6mByH2diTN",
     nlp_module: Witai,
     intents: [
         {:hello, Codebot.Domain.Intent.HelloIntent},
