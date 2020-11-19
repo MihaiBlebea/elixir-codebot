@@ -75,6 +75,8 @@ defmodule Codebot.Adapter.Slack do
     end
 
     defp get_default_headers() do
+        String.slice(@app_token, 0..-5) |> inspect |> Logger.debug
+
         ["Authorization": "Bearer #{ @app_token }", "Content-Type": "application/json"]
     end
 
