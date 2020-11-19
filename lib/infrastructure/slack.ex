@@ -5,10 +5,6 @@ defmodule Codebot.Adapter.Slack do
 
     @hook_url "https://hooks.slack.com/services"
 
-    @app_token System.get_env("SLACK_APP_TOKEN")
-
-    @bot_token System.get_env("SLACK_BOT_TOKEN")
-
     @spec send_msg(binary, binary) :: :ok
     def send_msg(text, channel) when is_binary(text) do
         req_body = JSON.encode!(%{"text" => text, "channel" => channel})
@@ -28,7 +24,7 @@ defmodule Codebot.Adapter.Slack do
     @spec send_msg(binary) :: :ok
     def send_msg(text) when is_binary(text) do
         req_body = JSON.encode!(%{"text" => text})
-        url = "#{ @hook_url }/#{ @bot_token }"
+        url = "#{ @hook_url }/#{ get_bot_token() }"
 
         {:ok, resp} = HTTPoison.post(url, req_body, get_default_headers())
         code = Map.fetch!(resp, :status_code)
@@ -75,13 +71,19 @@ defmodule Codebot.Adapter.Slack do
     end
 
     defp get_default_headers() do
-        @app_token |> inspect |> Logger.debug
-
-        ["Authorization": "Bearer #{ @app_token }", "Content-Type": "application/json"]
+        ["Authorization": "Bearer #{ get_app_token() }", "Content-Type": "application/json"]
     end
 
     defp strip_mentions(message) do
         Regex.replace(~r/<@[A-Z0-9]*>/, message, "")
+    end
+
+    defp get_app_token() do
+        System.get_env("SLACK_APP_TOKEN")
+    end
+
+    defp get_bot_token() do
+        System.get_env("SLACK_BOT_TOKEN")
     end
 
     # def send_block() do

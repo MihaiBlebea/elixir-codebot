@@ -5,11 +5,6 @@ ENV MIX_ENV=prod \
     TEST=1 \
     LANG=C.UTF-8
 
-ENV SLACK_APP_TOKEN=${SLACK_APP_TOKEN}
-ENV SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-ENV WITAI_TOKEN=${WITAI_TOKEN}
-ENV HTTP_PORT=${HTTP_PORT}
-
 # Install hex and rebar
 RUN mix local.hex --force && \
     mix local.rebar --force
